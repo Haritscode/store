@@ -1,0 +1,74 @@
+.authenticate_user {
+    text-align: center;
+    display: flex;
+    height: 100vh;
+    width:100%;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-image: linear-gradient(79deg, #7439db, #C66FBC 48%, #F7944D);
+}
+  .auth-form-container, .login-form, .register-form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    label {
+      text-align: left;
+      padding: 0.25rem 0;
+    }
+    .phone_number{
+      position: relative;
+    }
+    .notVerified_user{
+      color: red;
+    }
+    .verify_contact{
+      position: absolute;
+      padding: 2px;
+      top:1.4rem;
+      right:0.6rem;
+      color: rgb(64, 255, 47);
+    }
+    input {
+      margin: 0.5rem 0;
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+    }
+    .opt_input_verify{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 2rem;
+      button{
+        width: fit-content;
+        padding:12px;
+      }
+    }
+    #sign_up_button, button {
+      border: none;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      color: #7439db;
+    }
+    .link-btn {
+      background: none;
+      color: white;
+      text-decoration: underline;
+    }
+    .otp_here{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
+  @media screen and (min-width: 600px) {
+    .auth-form-container {
+      padding: 5rem;
+      border: 1px solid white;
+      border-radius: 10px;
+      margin: 0.5rem;
+    }
+  }

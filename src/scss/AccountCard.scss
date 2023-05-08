@@ -1,0 +1,13 @@
+.Accoutcard{
+    display:flex;
+    justify-content: space-between;
+    .AccountCard_left{
+        display:flex;
+        align-items: center;
+        gap:12px;
+        p{
+            font-size: large;
+            font-family: "Noto Sans Lepcha", sans-serif;
+        }
+    }
+}

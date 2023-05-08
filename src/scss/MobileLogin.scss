@@ -1,0 +1,169 @@
+.Mobile_login {
+  width: 100vw;
+  display: flex;
+  position: fixed;
+  bottom: 4rem;
+  left: 0;
+  z-index: 100;
+  background-color: white;
+  background-size: cover;
+  height: 32vh;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.5 ease;
+  gap: 2rem;
+  margin-bottom: 2px;
+  border-radius: 20px 20px 0px 0px;
+  border-top: outset;
+  border-top-color: rgb(189, 187, 187);
+  .Mobile_login_main {
+    width: 100%;
+    height:100%;
+    position: relative;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    .login_form {
+        width:70%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      .PhoneInput,
+      .PhoneInput--focus {
+        height: fit-content;
+        input {
+          border: none;
+        }
+        input:focus {
+          border: none;
+          outline: none;
+        }
+        .PhoneInputInput {
+          padding: 12px !important;
+          border-radius: 12px;
+          outline-offset: none;
+          border-style: solid;
+          border-width: thin;
+          background-color: #f0f2f5;
+        }
+      }
+      .Mobile_login_btn {
+        width: 50%;
+        height: 2rem;
+        margin: auto;
+        border-radius: 8px;
+        background-color: green;
+        border: none;
+        cursor: pointer;
+        color: white;
+        font-size: 16px;
+        font-family: "Noto Sans Lepcha", sans-serif;
+      }
+      .resend_otp {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        .resend_timer {
+          color: gray;
+        }
+        .resend_otp_btn {
+          border: none;
+          display: flex;
+          align-items: center;
+          background: transparent;
+          cursor: pointer;
+          color: green;
+        }
+        width: fit-content;
+        margin: auto;
+      }
+    }
+  }
+  .Login_close_btn {
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 1rem;
+    right:1rem;
+    border: none;
+    background: none;
+  }
+}
+.otp_verification {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  .otp_verification_btns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    .Mobile_otp_verify_btn {
+      width: fit-content;
+      height: 2rem;
+      margin: auto;
+      border-radius: 8px;
+      background-color: green;
+      border: none;
+      cursor: pointer;
+      padding: 4px 24px;
+      color: white;
+      font-size: 16px;
+      font-family: "Noto Sans Lepcha", sans-serif;
+    }
+    .Mobile_opt_resend {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      width: fit-content;
+      background-color: none;
+      cursor: pointer;
+    }
+  }
+}
+@media screen and (min-width: 736px) {
+  // .Mobile_login{
+  // display:none;
+  // }
+  .Mobile_login {
+    height: 90vh;
+    bottom: 0rem;
+    .logintext {
+      font-size: 1.8em;
+      margin-inline-start: 19rem;
+    }
+    .login_form {
+      width: 30%;
+    }
+    .login_form .PhoneInput .PhoneInputInput,
+    .Mobile_login .login_form .PhoneInput--focus .PhoneInputInput {
+      height: 30px;
+      font-size: x-large;
+      text-align: center;
+    }
+    .login_form .Mobile_login_btn {
+      width: 15%;
+      font-size: 24px;
+      height: 4rem;
+      margin-left: 270px;
+    }
+    .login_form .resend_otp {
+      margin-left: 280px;
+    }
+  }
+}
+
+.logintext {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 0.5em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  font-family: "Noto Sans Lepcha", sans-serif;
+}

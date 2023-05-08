@@ -1,0 +1,79 @@
+.Top_pickup{
+    display:flex;
+    flex-direction: column;
+    gap:2rem;
+    padding-top:12px;
+    .Top_pickup_head{
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+        h3{
+            margin: 0;
+        }
+    }
+    .Top_Pickup_List{
+        display:grid;
+        grid-template-columns: auto auto;
+        align-items: start;
+        list-style: none;
+        justify-content: space-evenly;
+        gap: 24px 12px;
+    }
+    .show_btns{
+        background: none;
+        border: none;
+        margin: auto;
+        margin-top:1rem;
+        padding:0.5rem;
+        border-radius: 6px;
+        background-color: #f2f2f2;
+        width: 60%;
+        height: fit-content;
+        color:black;
+        font-size: small;
+        box-shadow: 4px 4px 12px gray;
+        .best_seller_btns_content{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    }
+}
+@media screen and (min-width:850px)
+{
+    .Top_pickup{
+        .Top_Pickup_List{
+            grid-template-columns: auto auto auto auto auto;
+            align-items: start;
+            list-style: none;
+            gap: 24px 12px;
+        }
+    }   
+}
+.topdealsheading {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 0.5em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    font-family: "Noto Sans Lepcha", sans-serif;
+}
+@media screen and (min-width:736px){
+    .Top_pickup{
+        .Top_pickup_head h3{
+            font-size: 1.5em;
+        }
+        .Top_Pickup_List {
+            grid-template-columns: auto auto auto auto auto auto;
+            align-items: start;
+            list-style: none;
+            gap: 24px 12px;
+        }
+        .show_btns {
+            width: 15%;
+        }
+    }
+}

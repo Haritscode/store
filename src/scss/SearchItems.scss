@@ -1,0 +1,47 @@
+.Search_page {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 8px;
+
+    h3 {
+        padding: 1rem 0 2rem 0;
+        font-weight: 600;
+        font-size: larger;
+    }
+
+    .SearchItem {
+        display: grid;
+        justify-content: space-between;
+        align-items: center;
+        row-gap: 12px;
+        height: fit-content;
+        grid-template-columns: auto auto;
+    }
+
+    // margin: auto;
+}
+
+// justify-content: space-around;
+@media screen and (min-width:736px) {
+    .Search_page {
+        h3 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: "Noto Sans Lepcha", sans-serif;
+            font-size: 1.5em;
+            margin-block-start: 0.75em;
+            margin-block-end: 0.75em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        .SearchItem {
+            grid-template-columns: auto auto auto auto auto auto;
+            justify-content: space-evenly;
+
+        }
+    }
+}

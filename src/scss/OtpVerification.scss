@@ -1,0 +1,35 @@
+.otp_verification{
+    display:flex;
+    flex-direction: column;
+    gap:24px;
+    align-items: center;
+    .otp_verification_btns{
+        display:flex;
+        flex-direction: column;
+        gap:12px;
+        align-items: center;
+        .Mobile_otp_verify_btn{
+            width: fit-content;
+            height:2rem;
+            margin: auto;
+            border-radius: 8px;
+            background-color: green;
+            border:none;
+            cursor: pointer;
+            padding:4px 24px;
+            color: white;
+            font-size: 16px;
+            font-family: "Noto Sans Lepcha", sans-serif;
+
+        }
+        .Mobile_opt_resend{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            border:none;
+            width: fit-content;
+            background-color: none;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,110 @@
+//  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Mukta&display=swap');
+// .Cardorder{
+//     display:flex;
+//     justify-content: center;
+//     align-items: center;
+//     gap:12px;
+//     background-color: white;
+//     width:85%;
+//     padding:12px;
+// }
+// .order_img{
+//     width:60px;
+//     height: 60px;
+// }
+// .order_item_desc{
+//     display: flex;
+//     flex-direction: column;
+//     width: 60%;
+//     overflow: hidden;
+// }
+// .order_item_name{
+//     font-family: 'Merriweather', serif;
+//     width: 100%;
+// }
+// .order_item_company{
+//     font-family: 'Mukta', sans-serif;
+//     color:rgb(185, 179, 179);
+//     font-size: small;
+//     font-weight: 500;
+// }
+// .order_item_quantity{
+//     width: 20%;
+//     height: fit-content;
+//     display:flex;
+// }
+// .order_item_quantity>button{
+//     cursor: pointer;
+//     padding: 6px;
+//     border:0.5px solid gainsboro;
+//     background-color: white;
+// }
+// .order_item_quantity>span{
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     min-width: 26px;
+//     border: 0.5px solid gainsboro;
+// }
+
+.cartOrder{
+    border:0.5px solid gainsboro;
+    padding:6px 14px;
+    display:flex;
+    gap:24px;
+    .order_img{
+        border:1px solid gainsboro;
+        padding:4px;
+        width:100px;
+        height:140px;
+        border-radius: 6px;
+    }
+    .cartOrder_right{
+        display:flex;
+        flex-direction: column;
+        gap:6px;
+        padding:12px 0;
+        .cartitem_price{
+            display:flex;
+            gap:6px;
+            align-items: center;
+            .offer_price{
+                font-weight: 600;
+                font-size: medium;
+            }
+            .orignal_price{
+                font-weight: 200;
+                font-size: small;
+                color: gray;
+                text-decoration: line-through;
+            }
+            .Discount{
+                color:orange;
+                font-weight: 600;
+            }
+        }
+        .cartOrder_saved_amount{
+            color:green;
+            font-weight: 600;
+            font-size: small;
+        }
+        .order_item_quantity{
+                width: 20%;
+                height: fit-content;
+                display:flex;
+            }
+            .order_item_quantity>button{
+                cursor: pointer;
+                padding: 6px;
+                border:0.5px solid gainsboro;
+                background-color: white;
+            }
+            .order_item_quantity>span{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-width: 26px;
+                border: 0.5px solid gainsboro;
+            }
+    }
+}

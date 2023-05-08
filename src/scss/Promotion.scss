@@ -1,0 +1,11 @@
+.Promotion{
+    display:flex;
+    justify-content:center;
+    padding:12px 0; 
+}
+@media screen and (min-width:800px)
+{
+    .Promotion{
+        padding:54px 0; 
+    }
+}

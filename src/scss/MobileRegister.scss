@@ -1,0 +1,29 @@
+.Mobile_Register{
+    display:flex;
+    flex-direction: column;
+    background-image: url("../assets/Pink-Tiles-Gradient-Background.jpg");
+    height:70vh;
+    z-index: 100;
+    width:100%;
+    position: fixed;
+    left:0;
+    bottom:4rem;
+    justify-content: center;
+    align-items: center;
+    gap:12px;
+    p{
+        button{
+            border:none;
+            background-color: transparent;
+            font-size: large;
+            color:rgb(94, 94, 189);
+            text-decoration: underline;
+        }
+    }
+}
+@media screen and (min-width:800px)
+{
+    .Mobile_Register{
+        display:none;
+    }
+}

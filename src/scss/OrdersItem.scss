@@ -1,0 +1,29 @@
+.ordersItem{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    border:1px solid gainsboro;
+    padding:12px;
+    gap:2rem;
+    background-color: white;
+    .ordersItem_left{
+        display:flex;
+        align-items: center;
+        gap:12px;
+        img{
+            width:40px;
+        }
+        p{
+            font-weight: 500;
+        }
+    }
+    .ordersItem_right{
+        display:flex;
+        width:100px;
+        justify-content: start;
+        flex-direction: column;
+        p{
+            font-size: small;
+        }
+    }
+}

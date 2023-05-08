@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Lepcha&display=swap');
+.Categories{
+    display:flex;
+    flex-direction: column;
+    padding: 0px 0px 15px 0px;
+    gap:10px;
+    font-family: 'Noto Sans Lepcha', sans-serif;
+    .Categories_head{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "Noto Sans Lepcha", sans-serif;
+        font-size: 1em;
+        margin-block-start: .75em;
+        margin-block-end: .75em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;    
+        }
+        .Categories_list{
+            display: grid;
+            grid-template-columns: auto auto auto;
+            gap: 10px 10px;
+            list-style: none;
+    }
+    button{
+        background: none;
+        border: none;
+        margin: auto;
+        margin-top:1rem;
+        padding:0.5rem;
+        border-radius: 6px;
+        background-color: #f2f2f2;
+        width: 60%;
+        height: fit-content;
+        color:black;
+        font-size: small;
+        box-shadow: 4px 4px 12px gray;
+        .category_show_btns_content{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+@media screen and (min-width:800px){
+    .Categories{
+        padding:32px 0px;
+        .Categories_list{
+            grid-template-columns: auto auto auto auto auto;
+        }
+    }
+}
+@media screen and (min-width:390px){
+    .Categories{
+        .Categories_list{
+            gap: 12px 5px;
+        }
+    }
+}
+@media screen and (min-width:736px){
+    .Categories {
+        padding: 12px 0px;
+        button{
+            margin-top: 2rem;
+            width: 15%;
+        }
+        .Categories_list {
+            grid-template-columns: auto auto auto auto auto auto;
+        }
+        .Categories_head {
+            font-size: 1.5em;
+        }
+        .category_img {
+            width: 200px !important;
+            height: 90px !important;
+            border-radius: 10px !important;
+        }
+    }
+    
+}

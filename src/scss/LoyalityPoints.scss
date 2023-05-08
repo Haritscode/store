@@ -1,0 +1,22 @@
+.LoyalityPoint{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-style: solid;
+        border-width: thin;
+        height: 50px;
+        border-radius: 18px;
+        background-color: white;
+    p{
+        font-size: medium;
+        margin-inline-start: 20px;
+        margin-inline-end: 20px;
+        font-family: "Noto Sans Lepcha", sans-serif;
+    }
+    .coins{
+        font-weight: 800;
+        font-size: larger;
+        color: #7184FB;
+
+    }
+}

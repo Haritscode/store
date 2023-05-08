@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Noto+Serif+Khojki&family=Roboto+Slab&family=Roboto:wght@300;400&family=Saira&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.Item{
+    // height: 160px !important;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    height: fit-content;
+    padding: 6px 12px;
+    border-radius: 12px;
+    color: black;
+    position: relative;
+    flex-direction: column;
+    box-shadow: 2px 2px 12px gray;
+    max-width: 40vw;
+    .item_discount{
+        background-color: #256fef;
+        position:absolute;
+        font-family: 'Roboto Slab', serif;
+        display: flex;
+        justify-content: center;
+        right:0px;
+        // width:48px;
+        padding: 2px 8px;
+        font-size: x-small;  
+        color: white;
+        border-radius: 40px 0;
+    }
+    .Item_img{
+        width:150px;
+        border-radius:10px;
+        height:140px;
+        padding-top: 5px;
+    }
+}
+.Item_body{
+    width:92%;
+    .item_details{
+        display:flex;
+        flex-direction: column;
+        gap:2px;
+        font-family: 'Noto Serif Khojki', serif;
+        h4{
+            margin: 0;
+            max-height:24px;
+            overflow: hidden;
+            font-weight: 400;
+            font-size: x-small;
+            color: rgb(175, 165, 165);
+            margin-top: 6px;
+        }
+        p{
+            font-size: small;
+            min-height: 16px;
+            font-weight: 600;
+            overflow: hidden;
+            margin: 0;
+        }
+    }
+    .add_item_sec{
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        .Item_desc{
+            display: flex;
+            flex-direction: column;
+            .item_qnty{
+                margin: 0;
+                font-size:x-small;
+                font-weight: 700;
+                color:rgb(136, 122, 122);
+                font-family: 'Poppins', sans-serif;
+
+            }
+            .item_price{
+                display: flex;
+                flex-direction: column;
+                line-height: 12px;
+                margin:0;
+                margin-top:10px;
+                font-family: 'Saira', sans-serif;
+                .item_selling_price{
+                    font-size: smaller;
+                    margin: 0;
+
+                }
+                .item_original_price{
+                    font-size: x-small;
+                    text-decoration: line-through;
+                    color: rgb(180, 177, 177);
+                    margin: 0;
+                }
+            }
+        }
+    }
+    .Item_add_btn{
+        width: 60px;
+        height:28px;
+        color:#0c831f;
+        border:1px solid #0c831f;
+        background-color: #f7fff9 ;
+        font-weight: 600;
+        border-radius: 6px;
+        position: relative;
+        cursor: pointer;
+    }
+    .item_quantity{
+        display: flex;
+        width:68px;
+        padding: 4px;
+        color: white;
+        justify-content: space-between;
+        background-color: #0c831f;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        button{
+            background: none;
+            border: none;
+            padding:0;
+            display: flex;
+            justify-content: center;
+            font-size: larger;
+            color:white;
+            cursor: pointer;
+        }
+        span{
+            font-family: 'Roboto', sans-serif;
+            font-size: small;
+            font-weight: 600;
+        }
+    }
+}
+@media screen and (min-width:850px){
+    .Item{
+        width:200px;
+        height: fit-content;
+        transform: scale(1);
+        .Item_img{
+            width:200px;
+            border-radius: 10px;
+            // height:200px;
+        }
+    }
+    .Item_body{
+        .item_details{
+            h4{
+                max-height:32px;
+            }
+        }
+        .add_item_sec{
+            margin-top: 4px;
+        }
+    }
+}
+// @media screen and (min-width:390px)
+// {
+//     .Item_img{
+//         width: 150px !important;
+//         height: 140px !important;
+//     }
+//     .Item_body .Item_add_btn {
+//         width: 76px;
+//         height: 28px;
+//     }
+// }

@@ -1,0 +1,57 @@
+.Top_deals{
+    display: flex;
+    flex-direction: column;
+    .Top_Deals_head{
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin: 0 1rem 0 0;
+        h1{
+            display: block;
+            font-size: 1.17em;
+            margin-block-start: 0.75em;
+            margin-block-end: 0.75em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+            font-family: "Noto Sans Lepcha", sans-serif;
+        }
+    }
+    .best_seller_loading{
+        display: flex;
+        gap:8rem;
+    }
+}
+.react-horizontal-scrolling-menu--scroll-container{
+    gap:1rem;
+}
+.react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+.inventory_loading{
+    width: 100vw;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-evenly;    
+    gap:6rem;
+}
+@media screen and (min-width:450px) {
+    .react-horizontal-scrolling-menu--scroll-container{
+        gap:1rem;
+}
+}
+@media screen and (min-width:700px) {
+    .react-horizontal-scrolling-menu--scroll-container{
+        gap:1rem;
+}
+}
+@media screen and (min-width:950px) {
+    .react-horizontal-scrolling-menu--scroll-container{
+        gap:1rem;
+}
+}
+@media screen and (min-width:1250px) {
+    .react-horizontal-scrolling-menu--scroll-container{
+        gap:1rem;
+}
+}

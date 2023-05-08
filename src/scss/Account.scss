@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Lepcha&display=swap');
+.Account{
+    margin-bottom:128px;
+    font-family: "Noto Sans Lepcha", sans-serif;
+    height: 120vh;
+    .Account_header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        padding: 10px;
+        li{
+            font-family: 'Noto Sans Lepcha', sans-serif;
+            .account_number{
+                font-weight: 600;
+            }
+            .account_User{
+            }
+        }
+    }
+    .Account_body{
+        list-style: none;
+        li{
+            width:100%;
+            font-family: "Noto Sans Lepcha", sans-serif;
+            
+        }
+        .accout_logout{
+            width:100%;
+            padding:0;
+            .logout_btn{
+                gap: 8px;
+                display: flex;
+                align-items: center;
+                list-style: none;
+                border: 1px solid white;
+                padding: 15px;
+                width: 100%;
+                border-radius: 0px 0px 10px 10px;
+                background-image: linear-gradient( 109deg, rgba(110,123,251,1) 11.2%, rgba(156,252,248,1) 91.2% );
+                p{
+                    font-size: larger;
+                    font-weight: 400;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root {
+    background-color: white !important;
+    height: 60px;
+}
+.css-15v22id-MuiAccordionDetails-root{
+    // border-radius: 18px;
+}
+.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
+    min-height: 64px;
+}
+.css-15v22id-MuiAccordionDetails-root {
+    padding: 8px 16px 16px;
+    background: #9cfcf8;
+}
