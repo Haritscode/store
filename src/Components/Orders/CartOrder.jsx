@@ -17,7 +17,7 @@ const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
   })
   useEffect(()=>{
     let orderData=JSON.stringify(data)
-    localStorage.setItem("cartData",orderData);
+    localStorage.setItem(id,orderData);
   },[data])
   const subQnty=(id)=>{
     let items=data.cartData;
