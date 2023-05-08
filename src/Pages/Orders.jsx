@@ -41,7 +41,7 @@ const Orders = ({ setShowRegister }) => {
             totalQuantity += orderQnty;
         });
         if (isLoggedIn) {
-            if (userData.address !== "" && userData.zipcode !== "" && cartData.length !== 0) {
+            if ((userData.address !== "" && userData.zipcode !== "" && cartData.length !== 0 && deliveryOption === "Home Delivery") || (deliveryOption === "Store Pickup")){
                 setIsAddressAvilable(true)
                 const dt = new Date();
                 const padL = (nr, len = 2, chr = `0`) => `${nr}`.padStart(2, chr);
