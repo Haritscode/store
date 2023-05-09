@@ -32,6 +32,13 @@ export default function Navbar({setShowRegister,showRegister,setSearch,search,se
         }
     }, [id]);
     useEffect(()=>{
+        if(id.length>0)
+        {
+            let data=JSON.stringify(cartData)
+            localStorage.setItem(id,data);
+        }
+    },[cartData])
+    useEffect(()=>{
         if(LoggedInUser)
         {
             if(id.length>0)
