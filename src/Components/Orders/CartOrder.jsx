@@ -5,8 +5,8 @@ import blkimage from '../../assets/e-commerce-cart-shop-online-concept-vector-il
 import { useDispatch, useSelector } from 'react-redux';
 import { cartData } from '../../actions';
 const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
-  const data=useSelector(state=>state.rootReducer.userData.cartData)  
-  console.log(data);
+  const cartItem=useSelector(state=>state.rootReducer.userData.cartData);
+  const uid=useSelector(state=>state.rootReducer.userData.retailorId) 
   const dispatch=useDispatch();
   const [discount,setDiscount]=useState(0);
   useEffect(()=>{
@@ -15,19 +15,25 @@ const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
         setDiscount(parseInt(((mrp-Price)/mrp)*100))
     }
   })
-  useEffect(()=>{
-    let orderData=JSON.stringify(data)
-    localStorage.setItem(id,orderData);
-  },[data])
   const subQnty=(id)=>{
-    let items=data.cartData;
+    let items=cartItem;
     let newData=[]
     items.map((item)=>{
       if(item.id===id && item.orderQnty!==1)
       {
           newData.push({...item,orderQnty:item.orderQnty-1})
       }
-      else if(item.id===id && item.orderQnty===1){}
+      else if(item.id===id && item.orderQnty===1){
+        let newList=[];
+        newData.map((itm)=>{
+          if(item.id!==itm.id)
+          {
+            newList.push(item);
+          }
+        })
+        newData=newList;
+        console.log(item);
+      }
       else{
         newData.push({...item})
       }
@@ -35,7 +41,7 @@ const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
     dispatch(cartData(newData))
   }
   const addQnty=(id)=>{
-    let items=data.cartData;
+    let items=cartItem;
     let newData=[]
     items.map((item)=>{
       if(item.id==id)

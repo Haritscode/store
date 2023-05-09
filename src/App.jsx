@@ -14,6 +14,7 @@ import { checkUserAuth } from './handles/AuthUser'
 import DisablePage from './Pages/DisablePage'
 import retailorInfo from './handles/RetailorData'
 import { cartData } from './actions'
+import categoriesList from './handles/CategoriesList'
 function App() {
   const isOrderCreated=useSelector(state=>state.rootReducer.userData.isOrderCreated);
   const isUserLoggedIn=useSelector(state=>state.rootReducer.userData.isUserLoggedIn);
@@ -23,10 +24,10 @@ function App() {
   const [isSearchFocus,setIsSearchFocus]=useState(false);
   const [search, setSearch] = useState("");
   const dispatch=useDispatch();
-  let id=location.pathname.split("/")[1]
+  let id=location.pathname.split("/")[1];
   const [suggestion, setSuggestion] = useState([]);
   useEffect(()=>{
-    let ordersData=localStorage.getItem("cartData");
+    let ordersData=localStorage.getItem(id);
     ordersData=JSON.parse(ordersData);
     retailorInfo(id,dispatch)
     if(ordersData!==null)

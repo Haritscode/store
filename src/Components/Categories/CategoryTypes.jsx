@@ -4,29 +4,40 @@ import CategoryCard from './CategoryCard'
 import '../../scss/Categorie.scss'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import categoriesList from '../../handles/CategoriesList';
-import { useDispatch,useSelector } from 'react-redux';
+import InventoryData from '../../handles/InventoryData';
+import { useSelector } from 'react-redux';
 export default function Category() {
   const id=useSelector(state=>state.rootReducer.userData.retailorId);
-  const [data=[],loading,error]=categoriesList(id);
-  const dispatch=useDispatch();
+  const [categoryData=[],categoryLoading,categoryLoadingError]=categoriesList(id);
+  const [inventoryData=[],inventoryLoading,inventoryLoadingError]=InventoryData(id);
+  const [categoryList,setCategoryList]=useState([]);
   const [category,setCategory]=useState([])
   const [showCategories,setShowCategories]=useState(6);
-  const categories=useSelector(state=>state.rootReducer.userData.categoryList);
-  console.log(categories);
   useEffect(()=>{
     let categoryItem=new Set();
-    if(data?.length>0)
+    if(!inventoryLoading)
     {
-      data?.map((items)=>{
-        categories.map((item)=>{
-          if(items.categoryName===item){
-            categoryItem.add(items)
-          }
-        })
+      inventoryData.map((item)=>{
+        categoryItem.add(item.category);
       })
     }
-    setCategory([...categoryItem])
-  },[data,categories])
+    setCategoryList([...categoryItem])
+  },[inventoryLoading])
+  useEffect(()=>{
+    let categiestData=new Set();
+      if(!categoryLoading && categoryList.length>0)
+      {
+        categoryData?.map(item=>{
+          categoryList?.map(list=>{
+            if(item.categoryName===list)
+            {
+              categiestData.add(item);
+            }
+          })
+        })
+      }
+    setCategory([...categiestData])
+  },[categoryLoading,categoryList])
   return (
     <>
     <div className='Categories'>
@@ -35,7 +46,7 @@ export default function Category() {
         </h3>
         <ol className='Categories_list'>
           {
-            !loading?category?.map((item,count)=>count<showCategories?<Link key={count} to={`/${id}/category/${item.categoryName}`}><CategoryCard data={item}/></Link>:""):""
+            !categoryLoading?category?.map((item,count)=>count<showCategories?<Link key={count} to={`/${id}/category/${item.categoryName}`}><CategoryCard data={item}/></Link>:""):""
           }
         </ol>
         {category?.length>6?<button onClick={()=>showCategories>=data?.length?setShowCategories(6):setShowCategories(showCategories+showCategories)}>{showCategories>=data?.length?

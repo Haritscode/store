@@ -14,6 +14,8 @@ const reducer=(state,action)=>{
     {
         case 'itemAdded':
             return {...state,isItemAdded:true,itemQuantity:1,operation:"+"}
+        case "itemFoundInCart":
+            return {...state,isItemAdded:true,itemQuantity:action.payload,operation:""}
         case 'quantityrm':
             if(action.payload===0)
             {
@@ -30,8 +32,16 @@ const ItemCards = (info) => {
     const dispatcher=useDispatch();
     const list=useSelector(state=>state.rootReducer.userData)
     const [state,dispatch]=useReducer(reducer,initialData)
-    const [isItemFount,setIsItemFound]=useState(false);
     const [discount,setDiscount]=useState(0);
+    const cartItem=useSelector(state=>state.rootReducer.userData.cartData);
+    useEffect(()=>{
+        cartItem?.map(item=>{
+            if(item.id===info.data.id)
+            {
+                dispatch({type:"itemFoundInCart",payload:item.orderQnty})
+            }
+        })
+    },[info])
     useEffect(()=>{
         if(info.data.storeFrontOfferDiscount>0 && info.data.storeFrontOfferDiscount<info.data.mrp)
         {
@@ -46,14 +56,17 @@ const ItemCards = (info) => {
         let data=[];
         if(state.isItemAdded && state.itemQuantity>1)
         {
-            list.cartData.map((lst)=>{
+            cartItem.map(lst=>{
                 if(lst.id===info.data.id){
                     if(state.operation==="+")
                     {
                         data.push({...lst,orderQnty:( lst.orderQnty + 1 )})
                     }
-                    else{
+                    else if(state.operation==="-"){
                         data.push({...lst,orderQnty:( lst.orderQnty - 1 )})
+                    }
+                    else{
+                        data.push({...lst})
                     }
                 }
                 else{
@@ -62,19 +75,23 @@ const ItemCards = (info) => {
             })
             dispatcher(cartData(data))
         }
-        else if(state.isItemAdded && state.itemQuantity==1){
+        else if(state.isItemAdded && state.itemQuantity===1){
             let itemAvilable=false;
-            list.cartData.map((lst)=>{
+            console.log("hello");
+            cartItem?.map(lst=>{
                 if(lst.id===info.data.id)
                 {
                     if(state.operation==="+")
                     {
-                        data.push({...lst,orderQnty:( lst.orderQnty+1 )})
+                        data.push({...lst,orderQnty:( lst.orderQnty + 1 )})
+                        itemAvilable=true;
+                    }
+                    else if(state.operation==="-"){
+                        data.push({...lst,orderQnty:( lst.orderQnty - 1 )})                        
                         itemAvilable=true;
                     }
                     else{
-                        data.push({...lst,orderQnty:( lst.orderQnty-2 )})                        
-                        itemAvilable=true;
+                        data.push({...lst})
                     }
                 }
                 else{
@@ -89,7 +106,18 @@ const ItemCards = (info) => {
                 dispatcher(cartData([...list.cartData,{...info.data,orderQnty:1}]))
             }
         }
+        else if(state.itemQuantity===0 && state.operation==="-"){
+            let newData=[];
+            cartItem.map((item)=>{
+                if(item.id!==info.data.id)
+                {
+                    newData.push(item);
+                }
+            })
+            dispatcher(cartData(newData))
+        }
     },[state])
+    console.log(cartItem);
     return (
         <>
         <div className='Item'>
@@ -113,8 +141,8 @@ const ItemCards = (info) => {
                         <button onClick={()=>dispatch({type:'itemAdded'})} className='Item_add_btn' >ADD</button>:<span className='item_quantity'>
                         <button onClick={()=>dispatch({type:'quantityrm',payload:state.itemQuantity-1,operation:"-"})}><BiMinus/></button>
                         <span>{state.itemQuantity}</span>
-                        <button onClick={()=>dispatch({type:'quantityrm',payload:state.itemQuantity+1,operation:"+"})}><BiPlus/></button>
-                    </span>
+                            <button onClick={()=>dispatch({type:'quantityrm',payload:state.itemQuantity+1,operation:"+"})}><BiPlus/></button>
+                        </span>
                     }
                 </div>
             </div> 
