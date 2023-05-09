@@ -14,7 +14,7 @@ import { checkUserAuth } from './handles/AuthUser'
 import DisablePage from './Pages/DisablePage'
 import retailorInfo from './handles/RetailorData'
 import { cartData } from './actions'
-import categoriesList from './handles/CategoriesList'
+import { orderCreated } from './actions'
 function App() {
   const isOrderCreated=useSelector(state=>state.rootReducer.userData.isOrderCreated);
   const isUserLoggedIn=useSelector(state=>state.rootReducer.userData.isUserLoggedIn);
@@ -44,6 +44,15 @@ function App() {
       document.title=retailorData?.store?.storeName
     }
   },[retailorData])
+  useEffect(()=>{
+    if(isOrderCreated)
+    {
+      setTimeout(()=>{
+        dispatch(orderCreated(false))
+      },2000)
+    }
+  },[isOrderCreated])
+  console.log();
   return (
     <div className="App">
       {

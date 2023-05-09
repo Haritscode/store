@@ -10,7 +10,7 @@ import FormLabel from '@mui/material/FormLabel';
 import { TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import createOrder from '../handles/handleOrders'
-import { orderCreated, retailorId, userId } from '../actions';
+import { orderCreated, retailorId,cartData as cartItem} from '../actions';
 import { TbLocationFilled } from 'react-icons/tb'
 import { FaArrowAltCircleRight } from 'react-icons/fa'
 import { useParams } from 'react-router-dom';
@@ -64,6 +64,7 @@ const Orders = ({ setShowRegister }) => {
                     deliveryCharges: retailorData.storeFront.deliveryCharges
                 }
                 createOrder(id, order, setisOrderCreated);
+                dispatch(cartItem([]))
             }
             else {
                 setIsAddressAvilable(false);

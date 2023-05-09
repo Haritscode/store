@@ -32,7 +32,6 @@ const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
           }
         })
         newData=newList;
-        console.log(item);
       }
       else{
         newData.push({...item})
