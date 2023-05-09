@@ -1,7 +1,6 @@
-import {useEffect} from 'react'
 import '../../scss/categoriesCard.scss'
 export default function CategoryCard({data}) {
-  let name=data.categoryName.split(" ")[0];
+  let name=data?.categoryName?.split(" ")[0];
   return (
     <>
     <div className='Category_card'>
