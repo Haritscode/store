@@ -1,4 +1,4 @@
-import React,{useReducer, useEffect,useState} from 'react';
+import React,{useReducer, useEffect,useState,useRef} from 'react';
 import '../scss/ItemCarts.scss'
 import {BiPlus,BiMinus} from 'react-icons/bi';
 import subtitutingImg from '../assets/e-commerce-cart-shop-online-concept-vector-illustration-eps-80643946.jpg'
@@ -34,6 +34,7 @@ const ItemCards = (info) => {
     const [state,dispatch]=useReducer(reducer,initialData)
     const [discount,setDiscount]=useState(0);
     const cartItem=useSelector(state=>state.rootReducer.userData.cartData);
+    const imageref=useRef(null);
     useEffect(()=>{
         cartItem?.map(item=>{
             if(item.id===info.data.id)
@@ -77,7 +78,6 @@ const ItemCards = (info) => {
         }
         else if(state.isItemAdded && state.itemQuantity===1){
             let itemAvilable=false;
-            console.log("hello");
             cartItem?.map(lst=>{
                 if(lst.id===info.data.id)
                 {
@@ -117,12 +117,14 @@ const ItemCards = (info) => {
             dispatcher(cartData(newData))
         }
     },[state])
-    console.log(cartItem);
+    const substituteImage=()=>{
+        imageref.current.src=subtitutingImg;
+    }
     return (
         <>
         <div className='Item'>
             <span className='item_discount' style={discount<=0?{display:"none"}:{display:"block"}} >{discount}% off</span>
-            <img className='Item_img' src={info?.data?.image?.length!==0?info.data.image:subtitutingImg} alt="none"/>
+            <img className='Item_img' src={info?.data?.image?.length!==0?info.data.image:subtitutingImg} alt="none" onError={substituteImage} ref={imageref}/>
             <div className='Item_body'>
                 <div className='item_details'>
                     <h4 className='item_comp'>{info.data.name}</h4> 

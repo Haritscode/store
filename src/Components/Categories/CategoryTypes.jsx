@@ -49,7 +49,7 @@ export default function Category() {
             !categoryLoading?category?.map((item,count)=>count<showCategories?<Link key={count} to={`/${id}/category/${item.categoryName}`}><CategoryCard data={item}/></Link>:""):""
           }
         </ol>
-        {category?.length>6?<button onClick={()=>showCategories>=data?.length?setShowCategories(6):setShowCategories(showCategories+showCategories)}>{showCategories>=data?.length?
+        {category?.length>6?<button onClick={()=>showCategories>=category?.length?setShowCategories(6):setShowCategories(showCategories+showCategories)}>{showCategories>=category?.length?
           <div className='category_show_btns_content'>
             <p>Show less</p>
             <KeyboardArrowUpIcon/>

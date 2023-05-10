@@ -10,7 +10,6 @@ function OrderConfirmend({ setOpenModal }) {
   const isOrderCreated= useSelector(state=>state.rootReducer.userData.isOrderCreated);
   const dispatch=useDispatch()
   useEffect(()=>{
-    console.log(isOrderCreated);
     if(isOrderCreated)
     {
       setTimeout(()=>{

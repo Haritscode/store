@@ -10,17 +10,13 @@ const handleSubmit=async(id,contact,testData={},dispatcher=()=>{})=>{
         if(data.exists())
         {
             let result=data.data();
-            console.log(data.data());
-            console.log(result.isLoyaltyCustomer);
             if(result.address)
             {
                 dispatcher(userInfo(data.data()))
-                console.log("user already exists")
             }
             else{
                 let res=await updateDoc(readDoc,{isLoyaltyCustomer:false,netLoyaltyPoints:0,isStoreFrontCostomer:false,address:"",city:"",state:"",zipcode:"",customerName:"",customerId:uid})
                 dispatcher(userInfo({...data.data(),address:"",city:"",state:"",zipcode:"",customerName:"",customerId:uid}))
-                console.log("user is not updated");
             }
             localStorage.setItem("uid",uid)
             dispatcher(isLoggedIn(true))

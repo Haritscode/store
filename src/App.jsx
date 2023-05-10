@@ -52,7 +52,6 @@ function App() {
       },2000)
     }
   },[isOrderCreated])
-  console.log();
   return (
     <div className="App">
       {

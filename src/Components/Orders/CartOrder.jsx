@@ -4,10 +4,12 @@ import {BiPlus,BiMinus} from 'react-icons/bi';
 import blkimage from '../../assets/e-commerce-cart-shop-online-concept-vector-illustration-eps-80643946.jpg'
 import { useDispatch, useSelector } from 'react-redux';
 import { cartData } from '../../actions';
+import { useRef } from 'react';
 const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
   const cartItem=useSelector(state=>state.rootReducer.userData.cartData);
   const uid=useSelector(state=>state.rootReducer.userData.retailorId) 
   const dispatch=useDispatch();
+  const imageref=useRef();
   const [discount,setDiscount]=useState(0);
   useEffect(()=>{
     if(Price <= mrp)
@@ -28,7 +30,7 @@ const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
         newData.map((itm)=>{
           if(item.id!==itm.id)
           {
-            newList.push(item);
+            newList.push(itm);
           }
         })
         newData=newList;
@@ -53,6 +55,9 @@ const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
     })
     dispatch(cartData(newData))
   }
+  const substituteImage=()=>{
+    imageref.current.src=blkimage;
+  }
     return (
         <>
           {/* <div className='Cardorder'>
@@ -69,7 +74,7 @@ const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
             </span>
           </div> */}
           <div className='cartOrder'>
-              <img src={img.length===0?blkimage:img} alt="none" className='order_img'/>
+              <img src={img.length===0?blkimage:img} alt="none" className='order_img' onError={substituteImage} ref={imageref}/>
               <div className='cartOrder_right'>
                 <p>{productName.length<20?productName:productName.slice(0,15)+"..."}</p>
                 <div className='cartitem_price'>
