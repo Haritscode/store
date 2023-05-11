@@ -1,4 +1,4 @@
-import {useState,useEffect} from "react";
+import {useState,useEffect, useRef} from "react";
 import "../../../../scss/myOrdersDetail.scss";
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import OrderItem from "./OrderItem";
@@ -7,6 +7,7 @@ import orderDetail from "../../../../handles/orderDetail";
 import { useSelector } from "react-redux";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import dateFormat, { masks } from "dateformat";
+import image from "../../../../assets/e-commerce-shopping-cart-side-view-727680.jpg"
 export default function OrderDetail() {
   const location=useLocation();
   const orderId=location.state.orderId;
@@ -15,6 +16,7 @@ export default function OrderDetail() {
   const retailorId=useSelector(state=>state.rootReducer.userData.retailorId);
   const retailorData=useSelector(state=>state.rootReducer.userData.retailorData);
   const navigate=useNavigate();
+  const imageRef=useRef(null);
   useEffect(()=>{
     if(orderId.length>0)
     {
@@ -37,15 +39,18 @@ export default function OrderDetail() {
       }
     }
   },[orderData])
+  const defaultImage=()=>{
+    imageRef.current.src=image
+  }
   return (
     <>
       <div className="myorders_order_page">
         <div className="myorders_order_body">
           <button onClick={()=>navigate(-1)} className="myorders_back_btn"><KeyboardBackspaceIcon/> Go Back</button>
           <div className="myorders_order_info">
-            <img src="/Beazy-Logo-image.svg" alt="none" className="myorders_shop_logo" />
+            <img src={retailorData?.store?.storeImage} alt="none" className="myorders_shop_logo" onError={defaultImage} ref={imageRef}/>
             <div className="myorders_order_detail">
-              <p className="myorders_store_Name">Store Name</p>
+              <p className="myorders_store_Name">{retailorData?.store?.storeName}</p>
               <p className="myorders_order_at">
                 {`${orderData?.orderTimeStamp} | ${orderData?.order?.length} Items | ₹${orderData?.totalPrice}`}
               </p>
