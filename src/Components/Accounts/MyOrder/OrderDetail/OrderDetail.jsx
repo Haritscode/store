@@ -2,9 +2,10 @@ import {useState,useEffect} from "react";
 import "../../../../scss/myOrdersDetail.scss";
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import OrderItem from "./OrderItem";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import orderDetail from "../../../../handles/orderDetail";
 import { useSelector } from "react-redux";
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import dateFormat, { masks } from "dateformat";
 export default function OrderDetail() {
   const location=useLocation();
@@ -13,6 +14,7 @@ export default function OrderDetail() {
   const [orderDate,setOrderDate]=useState("");
   const retailorId=useSelector(state=>state.rootReducer.userData.retailorId);
   const retailorData=useSelector(state=>state.rootReducer.userData.retailorData);
+  const navigate=useNavigate();
   useEffect(()=>{
     if(orderId.length>0)
     {
@@ -35,11 +37,11 @@ export default function OrderDetail() {
       }
     }
   },[orderData])
-  console.log(retailorData);
   return (
     <>
       <div className="myorders_order_page">
         <div className="myorders_order_body">
+          <button onClick={()=>navigate(-1)} className="myorders_back_btn"><KeyboardBackspaceIcon/> Go Back</button>
           <div className="myorders_order_info">
             <img src="/Beazy-Logo-image.svg" alt="none" className="myorders_shop_logo" />
             <div className="myorders_order_detail">

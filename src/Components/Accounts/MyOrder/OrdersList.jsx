@@ -9,19 +9,18 @@ export default function OrdersList() {
     const userId=useSelector(state=>state.rootReducer.userData.userId)
     const [sortedData,setSortedData]=useState([]);
     const {id}=useParams();
-    const [data,loading,error]=ordersList(id,userId.slice(3)||localStorage.getItem("uid"));
+    const [data=[],loading,error]=ordersList(id,userId.slice(3)||localStorage.getItem("uid"));
+    const [orderList,setOrderList]=useState([]);
     const navigate=useNavigate();
     useEffect(()=>{
-      if(!loading)
-      {
-        data.sort((a,b)=>a.orderTimeStampId<b.orderTimeStampId?1:-1)
-        console.log(data);
-      }
-    },[loading])
+      let item=data;
+      item?.sort((a,b)=>a.orderTimeStampId<b.orderTimeStampId?1:-1)
+      setOrderList(item);
+    },[data])
     return (
     <>
     <ol className='orderList'>
-    {!loading?data.map((item,count)=><button onClick={()=>navigate(`/${id}/order`,{state:{orderId:item.orderId}})}><OrderDetails key={count} item={item}/></button>):""}
+    {!loading?orderList.map((item,count)=><button onClick={()=>navigate(`/${id}/order`,{state:{orderId:item.orderId}})}><OrderDetails key={count} item={item}/></button>):""}
     </ol>
     </>
   )

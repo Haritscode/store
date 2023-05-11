@@ -1,23 +1,40 @@
 .myorders_order_page {
     background-color: gainsboro;
     display: flex;
-    justify-content: center;
-    height:100%;
-    min-height: 90vh;
-  .myorders_order_body {
-    background-color: white;
-    width: 100vw;
-    padding:2rem 2rem;
-    display: flex;
     flex-direction: column;
-    gap:1rem;
-    padding-bottom: 6rem;
     @media screen and (min-width:950px) {
-      width:50vw;     
-      padding-bottom:2rem; 
+      justify-content: center;
+      align-items: center;
     }
-    .myorders_order_info {
+    .myorders_order_body {
+      background-color: white;
+      padding:2rem 2rem;
       display: flex;
+      flex-direction: column;
+      gap:1rem;
+      padding-top: 4rem;
+      padding-bottom: 6rem;
+      height:80vh;
+      position: relative;
+      @media screen and (min-width:950px) {
+        width:50vw;     
+        padding-bottom:2rem; 
+      }
+      .myorders_back_btn{
+        width: fit-content;
+        position: absolute;
+        height: fit-content;
+        right:1rem;
+        top:1rem;
+        background:none;
+        border: none;
+        cursor: pointer;
+        display:flex;
+        align-items: center;
+        gap:4px;
+      }
+      .myorders_order_info {
+        display: flex;
       align-items: center;
       gap: 1.5rem;
       .myorders_shop_logo{
