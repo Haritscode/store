@@ -10,13 +10,32 @@ export default function OrderDetail() {
   const location=useLocation();
   const orderId=location.state.orderId;
   const [orderData,setOrderData]=useState({});
-  const retailorId=useSelector(state=>state.rootReducer.userData.retailorId)
+  const [orderDate,setOrderDate]=useState("");
+  const retailorId=useSelector(state=>state.rootReducer.userData.retailorId);
+  const retailorData=useSelector(state=>state.rootReducer.userData.retailorData);
   useEffect(()=>{
     if(orderId.length>0)
     {
       orderDetail(retailorId,orderId,setOrderData);
     }
   },[orderId])
+  useEffect(()=>{
+    if(orderData?.orderTimeStamp?.length>0)
+    {
+      const dateString = orderData?.orderTimeStamp?.slice(0,19);
+      const [day, month, year, hours, minutes, seconds] = dateString.split(/[/ :]/);
+      const date = new Date(year, month - 1, day, hours, minutes, seconds);
+      let newDate=dateFormat(date,"DDDD");
+      if(newDate==='Today' || newDate==='YesterDay')
+      {
+        setOrderDate(newDate +" "+ orderData?.orderTimeStamp?.slice(10,16)+ " "+orderData.orderTimeStamp?.slice(20))
+      }
+      else{
+        setOrderDate(orderData?.orderTimeStamp?.slice(0,16)+" "+orderData?.orderTimeStamp?.slice(20))
+      }
+    }
+  },[orderData])
+  console.log(retailorData);
   return (
     <>
       <div className="myorders_order_page">
@@ -35,33 +54,35 @@ export default function OrderDetail() {
             <WarningAmberIcon sx={{color:"red",fontSize:"4rem",fontWeight:100}} />
             <div>
                 <p className="myorders_order_status_info">{orderData?.orderStatus}</p>
-                <p className="myorders_latest_order_status_update">{dateFormat(orderData?.orderTimeStamp)} ,{orderData?.orderTimeStamp?.slice(20)}</p>
+                <p className="myorders_latest_order_status_update">{orderDate}</p>
             </div>
           </div>
           <hr />
           <div className="myorders_order_Items">
-            <p className="myorders_order_Items_qnty">2 Items</p>
+            <p className="myorders_order_Items_qnty">{orderData?.order?.length} Items</p>
             <ul className="myorders_order_list">
-              <li className="myorders_order_list_item"><OrderItem/></li>
-              <li className="myorders_order_list_item"><OrderItem/></li>
-              <li className="myorders_order_list_item"><OrderItem/></li>
-              <li className="myorders_order_list_item"><OrderItem/></li>
-              <li className="myorders_order_list_item"><OrderItem/></li>
+              {
+                orderData?.order?.map((item,count)=><li className="myorders_order_list_item" key={count}><OrderItem data={item}/></li>)
+              }
             </ul>
           </div>
           <hr />
           <div className="myorders_order_cost">
             <div className="myorders_order_total">
               <p className="myorders_order_total_text">Item Total</p>
-              <p className="myorders_order_total_price">₹269</p>
+              <p className="myorders_order_total_price">₹{orderData?.totalPrice}</p>
             </div>
             <div className="myorders_order_total">
-              <p className="myorders_order_total_text">Delivery Charges</p>
-              <p className="myorders_order_total_price">₹40</p>
+              <p className="myorders_order_total_text"><i>Order Type</i></p>
+              <p className="myorders_order_total_price"><i>{orderData?.deliveryOption}</i></p>
             </div>
+            {orderData?.deliveryOption==="Home Delivery" && retailorData?.storeFront?.minDeliveryAmount>orderData.totalPrice?<div className="myorders_order_total">
+              <p className="myorders_order_total_text"><b><i>Delivery Charges</i></b></p>
+              <p className="myorders_order_total_price">₹<b><i>{orderData?.deliveryCharges}</i></b></p>
+            </div>:<></>}
             <div className="myorders_order_grand_total">
               <p className="myorders_order_grand_total_text">Grand Total</p>
-              <p className="myorders_order_grand_price">₹309</p>
+              <p className="myorders_order_grand_price">₹{orderData?.finalPrice}</p>
             </div>
           </div>
         </div>

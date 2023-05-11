@@ -31,7 +31,7 @@ const Orders = ({ setShowRegister }) => {
     const [isCartEmpty,setIsCartEmpty]=useState(true);
     const [note,setNote]=useState("");
     let subtotal = 0;
-    cartData.map(({ orderQnty, sellingPrice }) => subtotal += parseFloat(orderQnty * sellingPrice));
+    cartData.map(({ orderQnty, sellingPrice,storeFrontOfferDiscount }) => subtotal += parseFloat(orderQnty * (storeFrontOfferDiscount?.length>0?storeFrontOfferDiscount:sellingPrice)));
     const { id } = useParams();
     const dispatch = useDispatch();
     dispatch(retailorId(id))
