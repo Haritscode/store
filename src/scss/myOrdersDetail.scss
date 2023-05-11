@@ -1,0 +1,200 @@
+.myorders_order_page {
+    background-color: gainsboro;
+    display: flex;
+    justify-content: center;
+    height:100%;
+  .myorders_order_body {
+    background-color: white;
+    width: 100vw;
+    padding:2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+    padding-bottom: 6rem;
+    @media screen and (min-width:950px) {
+      width:50vw;     
+      padding-bottom:2rem; 
+    }
+    .myorders_order_info {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      .myorders_shop_logo{
+        width: 60px;
+        height: 60px;
+        border-radius: 4px;
+      }
+      .myorders_order_detail {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        gap: 0;
+        max-height: 40px;
+        .myorders_store_Name {
+          font-weight: 600;
+          color: blue;
+          font-size: larger;
+          padding: 0;
+          margin: 0;
+          display:flex;
+          align-items: center;
+          @media screen and (min-width:950px)
+          {
+            font-size: x-large;
+            height:20px;
+          }
+        }
+        .myorders_order_at {
+          padding: 0;
+          font-weight: 100;
+          font-size: small;
+          color: grey;
+        }
+      }
+    }
+    .myorders_order_status {
+        display:flex;
+        align-items: center;
+        gap:1.5rem;
+        .myorders_order_status_info{
+            color:red;
+            font-weight: 600;
+            font-size: large;
+        }
+        .latest_order_status_update{
+            font-size: small;
+            color:gray;
+            font-weight: 100;
+        }
+    }
+    .myorders_order_Items{
+      display:flex;
+      flex-direction: column;
+      gap:2rem;
+      .myorders_order_Items_qnty{
+        font-weight: 100;
+        font-size: large;
+        color: grey;
+      }
+      .myorders_order_list{
+        display:flex;
+        flex-direction: column;
+        list-style: none;
+        gap:2rem;
+      }
+    }
+    .myorders_order_cost{
+      width:100%;
+      font-size: large;
+      display:flex;
+      flex-direction: column;
+      gap:1rem;
+      .myorders_order_total{
+          display: flex;
+          justify-content: space-between;
+          gap:2rem;
+      }
+      .myorders_order_grand_total{
+        display: flex;
+        padding-top: 0.5rem;
+        justify-content: space-between;
+        font-weight: 800;
+        @media screen and (min-width:950px)
+        {
+          padding-top: 1rem;
+        }
+      }
+  }
+  }
+}
+
+// .myorders_order_page {
+//   background-color: gainsboro;
+//   display: flex;
+//   justify-content: center;
+//   height:100%;
+// .myorders_order_body {
+//   background-color: white;
+//   width: 50vw;
+//   padding:2rem 4rem;
+//   display: flex;
+//   flex-direction: column;
+//   gap:1rem;
+//   .myorders_order_info {
+//     display: flex;
+//     align-items: center;
+//     gap: 1.5rem;
+//     .myorders_shop_logo{
+//       width: 60px;
+//       height: 60px;
+//       border-radius: 4px;
+//     }
+//     .myorders_order_detail {
+//       display: flex;
+//       flex-direction: column;
+//       gap: 0;
+//       .store_Name {
+//         font-weight: 600;
+//         color: blue;
+//         font-size: large;
+//         padding: 0;
+//       }
+//       .myorders_order_at {
+//         padding: 0;
+//         font-weight: 100;
+//         font-size: small;
+//         color: grey;
+//       }
+//     }
+//   }
+//   .myorders_order_status {
+//       display:flex;
+//       align-items: center;
+//       gap:1.5rem;
+//       .myorders_order_status_info{
+//           color:red;
+//           font-weight: 600;
+//           font-size: large;
+//       }
+//       .latest_order_status_update{
+//           font-size: small;
+//           color:gray;
+//           font-weight: 100;
+//       }
+//   }
+//   .myorders_order_Items{
+//     display:flex;
+//     flex-direction: column;
+//     gap:2rem;
+//     .myorders_order_Items_qnty{
+//       font-weight: 100;
+//       font-size: large;
+//       color: grey;
+//     }
+//     .myorders_order_list{
+//       display:flex;
+//       flex-direction: column;
+//       list-style: none;
+//       gap:2rem;
+//     }
+//   }
+//   .myorders_order_cost{
+//     width:100%;
+//     font-size: large;
+//     display:flex;
+//     flex-direction: column;
+//     gap:1rem;
+//     .myorders_order_total{
+//         display: flex;
+//         justify-content: space-between;
+//         gap:2rem;
+//     }
+//     .myorders_order_grand_total{
+//       display: flex;
+//       padding-top: 1rem;
+//       justify-content: space-between;
+//       font-weight: 800;
+//     }
+// }
+// }
+// }

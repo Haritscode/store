@@ -3,12 +3,8 @@ import { Link } from 'react-router-dom';
 import CategoryCard from './CategoryCard'
 import '../../scss/Categorie.scss'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import categoriesList from '../../handles/CategoriesList';
 import InventoryData from '../../handles/InventoryData';
-import { useSelector } from 'react-redux';
-export default function Category() {
-  const id=useSelector(state=>state.rootReducer.userData.retailorId);
-  const [categoryData=[],categoryLoading,categoryLoadingError]=categoriesList(id);
+export default function Category({categoryData,categoryLoading,id}) {
   const [inventoryData=[],inventoryLoading,inventoryLoadingError]=InventoryData(id);
   const [categoryList,setCategoryList]=useState([]);
   const [category,setCategory]=useState([])
@@ -38,6 +34,7 @@ export default function Category() {
       }
     setCategory([...categiestData])
   },[categoryLoading,categoryList])
+
   return (
     <>
     <div className='Categories'>

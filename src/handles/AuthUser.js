@@ -70,7 +70,7 @@ const checkUserAuth = (dispatch) => {
     const user = auth.currentUser;
     if (user) {
         dispatch(isLoggedIn(true))
-        dispatch(userId(user.phoneNumber))
+        dispatch(userId(user.phoneNumber));
     } else {
         console.log("user is signed out");
     }

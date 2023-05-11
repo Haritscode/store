@@ -1,13 +1,9 @@
-import {useEffect,useState} from 'react'
+import {useState} from 'react'
 import ItemCards from '../ItemCards'
 import "../../scss/BestSellor.scss"
-import BestSellorData from '../../handles/BestSellorsData';
-import { useSelector } from 'react-redux';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-export default function BestSellor() {
-  const id=useSelector(state=>state.rootReducer.userData.retailorId)
-  const [data=[],loading,error]=BestSellorData(id);
+export default function BestSellor({data,loading,id}) {
   const [NoOfItemToShow,setNoOfItemToShow]=useState(6)
   return (
     <>

@@ -2,13 +2,8 @@ import {useEffect,useState} from 'react';
 import '../../scss/TopDeal.scss'
 import ItemCards from './DealsCart'
 import { ScrollMenu } from 'react-horizontal-scrolling-menu';
-import TopDeal from '../../handles/TopDeals';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
-import moment from 'moment';
-const TopDeals = () => {
-    const retailorId=useSelector(state=>state.rootReducer.userData.retailorId)
-    const [data=[],loading,error]=TopDeal(retailorId);
+const TopDeals = ({data,loading}) => {
     const [Date,setDate]=useState("")
     const [TodaysDate,setTodaysDate]=useState("");
     const [topDealsData,setTopDealsData]=useState([]);

@@ -7,7 +7,7 @@ import { cartData } from '../../actions';
 import { useRef } from 'react';
 const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
   const cartItem=useSelector(state=>state.rootReducer.userData.cartData);
-  const uid=useSelector(state=>state.rootReducer.userData.retailorId) 
+  const uid=useSelector(state=>state.rootReducer.userData.retailorId);
   const dispatch=useDispatch();
   const imageref=useRef();
   const [discount,setDiscount]=useState(0);
@@ -74,9 +74,9 @@ const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
             </span>
           </div> */}
           <div className='cartOrder'>
-              <img src={img.length===0?blkimage:img} alt="none" className='order_img' onError={substituteImage} ref={imageref}/>
+              <img src={img?.length===0?blkimage:img} alt="none" className='order_img' onError={substituteImage} ref={imageref}/>
               <div className='cartOrder_right'>
-                <p>{productName.length<20?productName:productName.slice(0,15)+"..."}</p>
+                <p>{productName?.length<20?productName:productName?.slice(0,15)+"..."}</p>
                 <div className='cartitem_price'>
                   <p className='offer_price'>₹{Price}</p>
                   <p className='orignal_price' style={mrp-Price<=0?{display:"none"}:{}}>₹{mrp}</p>

@@ -91,7 +91,8 @@ const ItemCards = (info) => {
                         itemAvilable=true;
                     }
                     else{
-                        data.push({...lst})
+                        data.push(lst);
+                        itemAvilable=true;
                     }
                 }
                 else{

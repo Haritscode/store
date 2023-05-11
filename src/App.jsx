@@ -14,7 +14,8 @@ import { checkUserAuth } from './handles/AuthUser'
 import DisablePage from './Pages/DisablePage'
 import retailorInfo from './handles/RetailorData'
 import { cartData } from './actions'
-import { orderCreated } from './actions'
+import { orderCreated } from './actions';
+import OrderDetail from './Components/Accounts/MyOrder/OrderDetail/OrderDetail'
 function App() {
   const isOrderCreated=useSelector(state=>state.rootReducer.userData.isOrderCreated);
   const isUserLoggedIn=useSelector(state=>state.rootReducer.userData.isUserLoggedIn);
@@ -64,6 +65,7 @@ function App() {
             <Route path="/:id/orders" element={!isOrderCreated?<Orders setShowRegister={setShowRegister}/>:<OrdersConfirmed/>}/>
             <Route path="/:id/account" element={<Account/>}/>
             <Route path="/:id/search" element={<SearchItems suggestion={suggestion} setIsSearchFocus={setIsSearchFocus} id={id}/>}/>
+            <Route path="/:id/order" element={<OrderDetail/>}/>
             {/* <Route path="/:id/login" element={<Login/>}/>
             <Route path="/:id/register" element={<Register/>}/> */}
             </Routes>
