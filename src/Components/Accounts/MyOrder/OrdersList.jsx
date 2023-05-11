@@ -13,9 +13,13 @@ export default function OrdersList() {
     const [orderList,setOrderList]=useState([]);
     const navigate=useNavigate();
     useEffect(()=>{
-      let item=data;
-      item?.sort((a,b)=>a.orderTimeStampId<b.orderTimeStampId?1:-1)
-      setOrderList(item);
+      if(data.length>0)
+      {
+        let item=[...data];
+        item?.sort((a,b)=>a.orderTimeStampId<b.orderTimeStampId?1:-1)
+        setOrderList(item);
+        console.log(item);
+      }
     },[data])
     return (
     <>
