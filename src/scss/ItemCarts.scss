@@ -2,19 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 .Item{
-    // height: 160px !important;
     display: flex;
     align-items: center;
     background-color: white;
     height: fit-content;
-    padding: 6px 12px;
     border-radius: 12px;
     color: black;
     position: relative;
     flex-direction: column;
     box-shadow: 2px 2px 12px gray;
-    width:175px;
-    height:200px;
+    height:210px;
+    padding: 6px 6px;
+    @media screen and (min-width:400px)
+    {   
+        height:230px;
+        padding: 6px 12px;
+        width:fit-content
+    }
     .item_discount{
         background-color: #256fef;
         position:absolute;
@@ -40,11 +44,12 @@
     .item_details{
         display:flex;
         flex-direction: column;
-        gap:2px;
+        gap:8px;
         font-family: 'Noto Serif Khojki', serif;
-        h4{
+        .item_comp{
             margin: 0;
-            max-height:24px;
+            height:18px;
+            width:80%;
             overflow: hidden;
             font-weight: 400;
             font-size: x-small;
