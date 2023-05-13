@@ -7,7 +7,6 @@ import { cartData } from '../../actions';
 import { useRef } from 'react';
 const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
   const cartItem=useSelector(state=>state.rootReducer.userData.cartData);
-  const uid=useSelector(state=>state.rootReducer.userData.retailorId);
   const dispatch=useDispatch();
   const imageref=useRef();
   const [discount,setDiscount]=useState(0);
@@ -76,8 +75,9 @@ const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
           <div className='cartOrder'>
               <img src={img?.length===0?blkimage:img} alt="none" className='order_img' onError={substituteImage} ref={imageref}/>
               <div className='cartOrder_right'>
-                <p>{productName?.length<20?productName:productName?.slice(0,15)+"..."}</p>
-                <div className='cartitem_price'>
+                <div className='orderItem_detail'>
+                <p className='orderItem_name'>{productName?.length<20?productName:productName?.slice(0,15)+"..."}</p>
+                <div className='cart_item_price'>
                   <p className='offer_price'>₹{Price}</p>
                   <p className='orignal_price' style={mrp-Price<=0?{display:"none"}:{}}>₹{mrp}</p>
                   <span className='Discount' style={mrp-Price<=0?{display:"none"}:{}}>({`${discount}% off`})</span>
@@ -85,6 +85,7 @@ const CartOrder = ({id,img,itemQnty,Price=0,productName,mrp=0}) => {
                 <p className='cartOrder_saved_amount' style={mrp-Price<=0?{display:"none"}:{}}>
                   You Save ₹{mrp-Price} 
                 </p>
+              </div>
               <span className='order_item_quantity'>
                 <button onClick={()=>subQnty(id)}><BiMinus/></button>
                 <span>{itemQnty}</span>

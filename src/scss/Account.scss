@@ -2,7 +2,12 @@
 .Account{
     margin-bottom:128px;
     font-family: "Noto Sans Lepcha", sans-serif;
-    height: 120vh;
+    height: 100%;
+    padding-top:9rem;
+    @media screen and (min-width:950px)
+    {
+        padding-top: 14rem;
+    }
     .Account_header{
         display: flex;
         justify-content: space-between;
@@ -13,8 +18,6 @@
             font-family: 'Noto Sans Lepcha', sans-serif;
             .account_number{
                 font-weight: 600;
-            }
-            .account_User{
             }
         }
     }

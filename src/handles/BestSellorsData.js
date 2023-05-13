@@ -1,8 +1,11 @@
 import {db} from '../firebase_setup/firebase';
 import {useCollectionData} from 'react-firebase-hooks/firestore'
-import { collection } from '@firebase/firestore';
+import { collection, where,query } from '@firebase/firestore';
 const BestSellorData=(id)=>{
-    const query=collection(db,`users/${id}/soldProducts`)
-    return useCollectionData(query);
+    const collectionRef=collection(db,`users/${id}/soldProducts`);
+    let q=query(collectionRef,where('showInStoreFront','==',true));
+    return useCollectionData(q);
 }
 export default BestSellorData;
+
+

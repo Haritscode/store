@@ -1,4 +1,4 @@
-import {useEffect,useState} from 'react'
+import {useEffect} from 'react'
 import '../../scss/Account.scss';
 import AccountCard from './AccountCard';
 import { HiMenu } from 'react-icons/hi'

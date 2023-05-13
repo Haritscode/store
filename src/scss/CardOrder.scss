@@ -55,22 +55,33 @@
     .order_img{
         border:1px solid gainsboro;
         padding:4px;
-        width:100px;
-        height:140px;
+        width:50px;
+        height:80px;
         border-radius: 6px;
     }
     .cartOrder_right{
         display:flex;
-        flex-direction: column;
-        gap:6px;
-        padding:12px 0;
-        .cartitem_price{
-            display:flex;
-            gap:6px;
-            align-items: center;
+        justify-content: space-between;
+        width:60%;
+        align-items: center;
+        @media screen and (min-width:950px)
+        {
+            width: 100%;
+        }
+        .orderItem_detail{
+            display: flex;
+            flex-direction: column;
+            .orderItem_name{
+                font-size: small;
+                margin: 0;
+            }
+            .cart_item_price{
+                display:flex;
+                align-items: center;
+                height: fit-content;
             .offer_price{
                 font-weight: 600;
-                font-size: medium;
+                font-size: small;
             }
             .orignal_price{
                 font-weight: 200;
@@ -88,6 +99,7 @@
             font-weight: 600;
             font-size: small;
         }
+    }
         .order_item_quantity{
                 width: 20%;
                 height: fit-content;

@@ -26,7 +26,6 @@ export default function Home() {
       setDataLoaded(true);
     }
   },[topDealsLoading,categoryLoading,bestSellorloading])
-  console.log(topDealsLoading + " "+ categoryLoading + " " + bestSellorloading );
   return (
     <>
     {
@@ -42,7 +41,9 @@ export default function Home() {
           loading={topDealsLoading}
           retailorId={id}
         />
-        <BestSellor data={bestSellorData} id={id} loading={bestSellorloading} />
+        {
+          bestSellorData?.length>0?<BestSellor data={bestSellorData} id={id} loading={bestSellorloading} />:<></>
+        }
       </div>:<Loader/>
     }
     </>

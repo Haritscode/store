@@ -2,6 +2,7 @@
     background-color: gainsboro;
     display: flex;
     flex-direction: column;
+    padding-top: 9rem;
     @media screen and (min-width:950px) {
       justify-content: center;
       align-items: center;
@@ -14,9 +15,9 @@
       gap:1rem;
       padding-top: 4rem;
       padding-bottom: 6rem;
-      height:80vh;
       position: relative;
       @media screen and (min-width:950px) {
+        height:80vh;
         width:50vw;     
         padding-bottom:2rem; 
       }
@@ -121,6 +122,10 @@
         {
           padding-top: 1rem;
         }
+      }
+      .myorders_custom_message{
+        padding:12px 0;
+        border-radius: 6px;
       }
   }
   }

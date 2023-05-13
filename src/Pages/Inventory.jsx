@@ -3,8 +3,8 @@ import ItemCards from '../Components/ItemCards'
 import '../scss/inventory.scss'
 import categoriesData from '../handles/CategoriesData';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { retailorId, userId } from '../actions';
+import { useDispatch } from 'react-redux';
+import { retailorId } from '../actions';
 import { checkUserAuth } from '../handles/AuthUser';
 import Loader from '../Components/Loading/Loader';
 const Inventory = () => {

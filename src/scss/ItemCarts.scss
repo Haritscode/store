@@ -11,13 +11,11 @@
     position: relative;
     flex-direction: column;
     box-shadow: 2px 2px 12px gray;
-    height:210px;
     padding: 6px 6px;
-    @media screen and (min-width:400px)
+    width:fit-content;
+    @media screen and (min-width:950px)
     {   
-        height:230px;
         padding: 6px 12px;
-        width:fit-content
     }
     .item_discount{
         background-color: #256fef;
@@ -26,9 +24,8 @@
         display: flex;
         justify-content: center;
         right:0px;
-        // width:48px;
         padding: 2px 8px;
-        font-size: x-small;  
+        font-size: x-small;
         color: white;
         border-radius: 40px 0;
     }
@@ -53,7 +50,7 @@
             overflow: hidden;
             font-weight: 400;
             font-size: x-small;
-            color: rgb(175, 165, 165);
+            color: black;
             margin-top: 6px;
         }
         p{

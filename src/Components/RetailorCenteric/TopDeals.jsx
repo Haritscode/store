@@ -1,8 +1,8 @@
 import {useEffect,useState} from 'react';
 import '../../scss/TopDeal.scss'
-import ItemCards from './DealsCart'
 import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 import axios from 'axios';
+import ItemCards from '../ItemCards';
 const TopDeals = ({data,loading}) => {
     const [Date,setDate]=useState("")
     const [TodaysDate,setTodaysDate]=useState("");
@@ -19,7 +19,6 @@ const TopDeals = ({data,loading}) => {
             setTodaysDate(`${date}/${month}/${year}`)
         }
     },[Date]);
-
     useEffect(()=>{
         const TopDealsData=[];
         if(data.length!==0 && TodaysDate!==""){
@@ -50,11 +49,8 @@ const TopDeals = ({data,loading}) => {
                     <h1>
                         Top Deals
                     </h1>
-                    {/* <span>
-                        show more
-                    </span> */}
                 </div>
-                <ScrollMenu>
+                <ScrollMenu scrollContainerClassName={"scroller"}>
                     {
                         topDealsData.map((info,count) => <ItemCards key={count} data={info}  />)
                     }

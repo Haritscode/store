@@ -23,7 +23,10 @@
     }
 }
 .react-horizontal-scrolling-menu--scroll-container{
-    gap:1rem;
+    gap:0.5rem;
+    padding:12px;
+    padding-left:4px;
+
 }
 .react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
     display: none;

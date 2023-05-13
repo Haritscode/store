@@ -43,6 +43,7 @@ const ItemCards = (info) => {
             }
         })
     },[info])
+    console.log(info);
     useEffect(()=>{
         if(info.data.storeFrontOfferDiscount>0 && info.data.storeFrontOfferDiscount<info.data.mrp)
         {
@@ -127,21 +128,20 @@ const ItemCards = (info) => {
             <span className='item_discount' style={discount<=0?{display:"none"}:{display:"block"}} >{discount}% off</span>
             <img className='Item_img' src={info?.data?.image?.length!==0?info.data.image:subtitutingImg} alt="none" onError={substituteImage} ref={imageref}/>
             <div className='Item_body'>
+                <p style={info?.data?.outOfStock?{color:"red",fontSize:'8px'}:{display:'none'}}>* Out of Stock</p>
                 <div className='item_details'>
                     <h4 className='item_comp'>{info.data.name}</h4> 
-                    {/* <p className='item_name'>{info.data.name}</p> */}
                 </div>
                 <div className='add_item_sec' style={info?.data?.mrp>0 && info?.data?.mrp>info?.data.sellingPrice?{alignItems:"center"}:{}}>
                     <div className='Item_desc'>
-                        {/* <p className='item_qnty'>{info.data.quantityInStock}</p> */}
                         <span className='item_price'>
-                            <p className='item_selling_price'>{info.data.storeFrontOfferDiscount>0?info.data.storeFrontOfferDiscount:info.data.sellingPrice} ₹/{info.data.uom} </p>
+                            <p className='item_selling_price'>{info.data.storeFrontOfferDiscount>0?info.data.storeFrontOfferDiscount.toFixed(2):info.data.sellingPrice} ₹/{info.data.uom} </p>
                             <p className='item_original_price' style={info?.data?.mrp>0 && info?.data?.mrp>info?.data.sellingPrice?{}:{display:"none"}} >{info.data.mrp} ₹</p>
                         </span>
                     </div>
                     {
                         !state.isItemAdded?
-                        <button onClick={()=>dispatch({type:'itemAdded'})} className='Item_add_btn' >ADD</button>:<span className='item_quantity'>
+                        <button disabled={info?.data?.outOfStock} onClick={()=>dispatch({type:'itemAdded'})} className='Item_add_btn' >ADD</button>:<span className='item_quantity'>
                         <button onClick={()=>dispatch({type:'quantityrm',payload:state.itemQuantity-1,operation:"-"})}><BiMinus/></button>
                         <span>{state.itemQuantity}</span>
                             <button onClick={()=>dispatch({type:'quantityrm',payload:state.itemQuantity+1,operation:"+"})}><BiPlus/></button>

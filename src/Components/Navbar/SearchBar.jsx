@@ -62,8 +62,16 @@ export default function SearchBar({ inventoryData,id,setSearch,search,setSuggest
     setIsSearchFocus(false);
     setSearch("");
   }
+  const Blur=()=>{
+    {
+      setTimeout(()=>{
+        setIsSearchFocus(false)
+        setisFilterClicked(false)
+      },100)
+    }
+  }
   return (
-    <div className='search'>
+    <div className='search' onBlur={Blur}>
       <div className='SearchBar'>
         <BiSearchAlt2 size={20} id="search_icon" />
         <input ref={ref} placeholder='Search here...' type="text" onChange={searching} onFocus={() => setIsSearchFocus(true)} value={search} onKeyDown={onKeyPress}/>

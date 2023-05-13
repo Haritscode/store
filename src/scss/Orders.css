@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&family=Source+Sans+Pro:ital@1&display=swap');
 .cartEmpty{
-    /* width:100vw; */
     height:110vh;
     background-color: white;
     display: flex;
@@ -69,10 +68,14 @@
     justify-content: center;
     display: flex;
     flex-direction: column;
-    font-family: "Noto Sans Lepcha", sans-serif;    
+    font-family: "Noto Sans Lepcha", sans-serif;  
+    padding-top:9rem;  
 }
 .order_head_text{
     margin-top: 20px;
+}
+.orders_item_list{
+    padding: 0;
 }
 .delivery_details{
     width: 90vw;
@@ -92,7 +95,7 @@
     display:flex;
     background-color: white;
     flex-direction: column;
-    height: 60vh;
+    height: 40vh;
     margin-bottom:8px;
     overflow: auto;
     gap:12px;

@@ -7,23 +7,23 @@
     border-radius: 6px;
     box-shadow: 2px 2px 12px gray;
     padding: 2px 6px;
+    width:fit-content;
     .category_img{
         border-radius: 8px;
-        width: 100px;
-        height: 60px;
-        // padding: 5px;
+        width:90px;
+        height: 55px;
     }
-    p{
+    .category_name{
         display: block;
         font-size: 1em;
         margin-block-start: 0.5em; 
         margin-inline-start: 0px;
         margin-inline-end: 0px;
+        text-align: center;
         font-weight: bold;
         font-family: "Noto Sans Lepcha", sans-serif;
         color: black;
-        // text-decoration: overline;
-
+        text-decoration: none;
     }
 }
 @media screen and (min-width:800px)

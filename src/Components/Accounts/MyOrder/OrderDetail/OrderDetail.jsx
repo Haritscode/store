@@ -91,6 +91,11 @@ export default function OrderDetail() {
               <p className="myorders_order_grand_total_text">Grand Total</p>
               <p className="myorders_order_grand_price">₹{orderData?.finalPrice}</p>
             </div>
+            {
+              orderData?.noteForRetailor?.length>0?<div className="myorders_custom_message">
+              <p><b>Note: </b> {orderData?.noteForRetailor}</p>
+            </div>:<></>
+            }
           </div>
         </div>
       </div>
