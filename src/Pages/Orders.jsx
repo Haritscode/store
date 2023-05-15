@@ -31,7 +31,7 @@ const Orders = ({ setShowRegister }) => {
     const [isCartEmpty,setIsCartEmpty]=useState(true);
     const [note,setNote]=useState("");
     let subtotal = 0;
-    cartData.map(({ orderQnty, sellingPrice,storeFrontOfferDiscount }) => subtotal += parseFloat(orderQnty * (storeFrontOfferDiscount?.length>0?storeFrontOfferDiscount:sellingPrice)));
+    cartData.map(({ orderQnty, sellingPrice,storeFrontOfferDiscount }) => subtotal += parseFloat(orderQnty * (storeFrontOfferDiscount>0?(sellingPrice-storeFrontOfferDiscount)?.toFixed(1):sellingPrice?.toFixed(1))));
     const { id } = useParams();
     const dispatch = useDispatch();
     dispatch(retailorId(id));
@@ -78,11 +78,21 @@ const Orders = ({ setShowRegister }) => {
         if(cartData.length!==0)
         {
             setIsCartEmpty(false);
-            cartData.map(({mrp,sellingPrice,orderQnty})=>{
-                if(mrp>sellingPrice || mrp!==0)
+            cartData.map(({mrp,sellingPrice,orderQnty,storeFrontOfferDiscount})=>{
+                if(mrp!=0 && mrp>=sellingPrice && storeFrontOfferDiscount>0)
+                {
+                    saved+=(mrp-(sellingPrice-storeFrontOfferDiscount))*orderQnty;
+                }
+                else if( mrp!==0 && mrp>=sellingPrice && storeFrontOfferDiscount==0)
                 {
                     saved+=(mrp-sellingPrice)*orderQnty;
                 }
+                else if(mrp==0 && storeFrontOfferDiscount>0)
+                {
+                    saved+=(sellingPrice-storeFrontOfferDiscount)*orderQnty;
+                    console.log(saved);
+                }
+                console.log("mrp: ",mrp+ " " +" sellingPrice: "+ sellingPrice+" orderQnty: "+orderQnty+" storeFrontOfferDiscount: "+storeFrontOfferDiscount);
             })
         }
         else{
@@ -120,7 +130,8 @@ const Orders = ({ setShowRegister }) => {
                     <div className='order_summery'>
                         <h4 className='order_head_text'>Order Summary</h4>
                         <ul className='orders_item_list'>
-                            {cartData.map(({ id, image, orderQnty, sellingPrice, name,mrp }) => <li><CartOrder key={id} id={id} img={image} itemQnty={orderQnty} Price={sellingPrice} productName={name} mrp={mrp} /></li>)}
+                            {cartData.map(({ id, image, orderQnty, sellingPrice, name,mrp,storeFrontOfferDiscount }) => {
+                            return <li><CartOrder key={id} id={id} img={image} itemQnty={orderQnty} Price={sellingPrice} productName={name} mrp={mrp} storeFrontOfferDiscount={storeFrontOfferDiscount} /></li>})}
                         </ul>
                     </div>
                     <div className='total_calculate'>
@@ -157,8 +168,8 @@ const Orders = ({ setShowRegister }) => {
                             </li>
                         </ol>
                         {deliveryOption==="Home Delivery" || savedAmount>0 ? <div className='customer_Notes'>
-                            {savedAmount>0?<p className='customer_saved_amout'>You saved ₹{savedAmount} So far on this order</p>:""}
-                            {deliveryOption==="Home Delivery"?retailorData?.storeFront?.deliveryCharges>0?<p className='customer_delevey_Note' style={retailorData?.storeFront?.minDeliveryAmount<subtotal ?{display:"none"}:{}}>Save ₹{retailorData?.storeFront?.deliveryCharges} on Delivery by adding ₹{retailorData?.storeFront?.minDeliveryAmount-subtotal} more to bag</p>:<></>:""}
+                            {savedAmount>0?<p className='customer_saved_amout' style={savedAmount>0?{}:{display:"none"}}>You saved ₹{savedAmount.toLocaleString().split('.').length>1?savedAmount.toFixed(1):savedAmount} So far on this order</p>:""}
+                            {deliveryOption==="Home Delivery"?retailorData?.storeFront?.deliveryCharges>0?<p className='customer_delevey_Note' style={retailorData?.storeFront?.minDeliveryAmount<=subtotal ?{display:"none"}:{}}>Save ₹{retailorData?.storeFront?.deliveryCharges} on Delivery by adding ₹{retailorData?.storeFront?.minDeliveryAmount-subtotal} more to bag</p>:<></>:""}
                             </div>:""
                         }
                         <div className='order_total'>
@@ -169,7 +180,7 @@ const Orders = ({ setShowRegister }) => {
                                 </div>
                                 <div className='saved_cost_sec'>
                                     <h5>Saved</h5>
-                                    <b className='saved_amount'>₹{savedAmount}</b>
+                                    <b className='saved_amount'>₹{savedAmount>0?savedAmount.toLocaleString().split('.').length>1?savedAmount.toFixed(1):savedAmount:0}</b>
                                 </div>
                             </div>
                             <div className='addNotAdded'>

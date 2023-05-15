@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev_mob": "vite --host 192.168.29.218",
+    "dev_mob": "vite --host 192.168.213.27",
     "build": "vite build",
     "preview": "vite preview"
   },

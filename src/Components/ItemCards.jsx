@@ -37,42 +37,45 @@ const ItemCards = (info) => {
     const imageref=useRef(null);
     useEffect(()=>{
         cartItem?.map(item=>{
-            if(item.id===info.data.id)
+            if(item.id===info?.data?.id)
             {
                 dispatch({type:"itemFoundInCart",payload:item.orderQnty})
             }
         })
     },[info])
-    console.log(info);
     useEffect(()=>{
-        if(info.data.storeFrontOfferDiscount>0 && info.data.storeFrontOfferDiscount<info.data.mrp)
+        if(info?.data?.storeFrontOfferDiscount>0 && info?.data?.mrp>0 && info?.data?.storeFrontOfferDiscount<info?.data?.mrp)
         {
-            setDiscount(parseInt(((info.data.mrp-info.data.storeFrontOfferDiscount)/info.data.mrp)*100))
+            setDiscount((((info?.data?.mrp-(info?.data?.sellingPrice?.toFixed(2)-info?.data?.storeFrontOfferDiscount?.toFixed(2)))/info?.data?.mrp?.toFixed(2))*100)?.toFixed(1))
         }
-        else if(info.data.sellingPrice<info.data.mrp)
+        else if(info?.data?.storeFrontOfferDiscount>0 && info?.data?.mrp===0)
         {
-            setDiscount(parseInt(((info.data.mrp-info.data.sellingPrice)/info.data.mrp)*100))
+            setDiscount(parseInt(((info?.data?.sellingPrice?.toFixed(2)-(info?.data?.sellingPrice?.toFixed(2)-info?.data?.storeFrontOfferDiscount?.toFixed(2)))/info?.data?.sellingPrice?.toFixed(2))*100)?.toFixed(1))
         }
-    },[info.data.sellingPrice,info.data.mrp,info.data.storeFrontOfferDiscount])
+        else if(info?.data?.sellingPrice<info?.data?.mrp)
+        {
+            setDiscount(parseInt(((info?.data?.mrp?.toFixed(2)-info?.data?.sellingPrice?.toFixed(2))/info?.data?.mrp)*100)?.toFixed(1))
+        }
+    },[info?.data?.sellingPrice,info?.data?.mrp,info?.data?.storeFrontOfferDiscount])
     useEffect(()=>{
         let data=[];
         if(state.isItemAdded && state.itemQuantity>1)
         {
             cartItem.map(lst=>{
-                if(lst.id===info.data.id){
+                if(lst.id===info?.data?.id){
                     if(state.operation==="+")
                     {
-                        data.push({...lst,orderQnty:( lst.orderQnty + 1 )})
+                        data?.push({...lst,orderQnty:( lst.orderQnty + 1 )})
                     }
                     else if(state.operation==="-"){
-                        data.push({...lst,orderQnty:( lst.orderQnty - 1 )})
+                        data?.push({...lst,orderQnty:( lst.orderQnty - 1 )})
                     }
                     else{
-                        data.push({...lst})
+                        data?.push({...lst})
                     }
                 }
                 else{
-                    data.push(lst)
+                    data?.push(lst)
                 }
             })
             dispatcher(cartData(data))
@@ -80,24 +83,24 @@ const ItemCards = (info) => {
         else if(state.isItemAdded && state.itemQuantity===1){
             let itemAvilable=false;
             cartItem?.map(lst=>{
-                if(lst.id===info.data.id)
+                if(lst.id===info?.data?.id)
                 {
                     if(state.operation==="+")
                     {
-                        data.push({...lst,orderQnty:( lst.orderQnty + 1 )})
+                        data?.push({...lst,orderQnty:( lst.orderQnty + 1 )})
                         itemAvilable=true;
                     }
                     else if(state.operation==="-"){
-                        data.push({...lst,orderQnty:( lst.orderQnty - 1 )})                        
+                        data?.push({...lst,orderQnty:( lst.orderQnty - 1 )})                        
                         itemAvilable=true;
                     }
                     else{
-                        data.push(lst);
+                        data?.push(lst);
                         itemAvilable=true;
                     }
                 }
                 else{
-                    data.push(lst);
+                    data?.push(lst);
                 }
             })
             if(itemAvilable)
@@ -105,13 +108,13 @@ const ItemCards = (info) => {
                 dispatcher(cartData(data))
             }
             else{
-                dispatcher(cartData([...list.cartData,{...info.data,orderQnty:1}]))
+                dispatcher(cartData([...list.cartData,{...info?.data,orderQnty:1}]))
             }
         }
         else if(state.itemQuantity===0 && state.operation==="-"){
             let newData=[];
             cartItem.map((item)=>{
-                if(item.id!==info.data.id)
+                if(item.id!==info?.data?.id)
                 {
                     newData.push(item);
                 }
@@ -122,21 +125,22 @@ const ItemCards = (info) => {
     const substituteImage=()=>{
         imageref.current.src=subtitutingImg;
     }
+    // console.log(info?.data?.storeFrontOfferDiscount>0?toString(info?.data?.sellingPrice-info?.data?.storeFrontOfferDiscount)?.split(".")?.length>1?(info?.data?.sellingPrice-info?.data?.storeFrontOfferDiscount)?.toFixed(1):(info?.data?.sellingPrice-info?.data?.storeFrontOfferDiscount).toFixed(1):toString(info?.data?.sellingPrice).split(".")?.length>1?info?.data?.sellingPrice.toFixed(1):info?.data?.sellingPrice);
     return (
         <>
         <div className='Item'>
             <span className='item_discount' style={discount<=0?{display:"none"}:{display:"block"}} >{discount}% off</span>
-            <img className='Item_img' src={info?.data?.image?.length!==0?info.data.image:subtitutingImg} alt="none" onError={substituteImage} ref={imageref}/>
+            <img className='Item_img' src={info?.data?.image?.length!==0?info?.data?.image:subtitutingImg} alt="none" onError={substituteImage} ref={imageref}/>
             <div className='Item_body'>
                 <p style={info?.data?.outOfStock?{color:"red",fontSize:'8px'}:{display:'none'}}>* Out of Stock</p>
                 <div className='item_details'>
-                    <h4 className='item_comp'>{info.data.name}</h4> 
+                    <h4 className='item_comp'>{info?.data?.name}</h4> 
                 </div>
-                <div className='add_item_sec' style={info?.data?.mrp>0 && info?.data?.mrp>info?.data.sellingPrice?{alignItems:"center"}:{}}>
+                <div className='add_item_sec' style={info?.data?.mrp>0 && info?.data?.mrp>info?.data?.sellingPrice?{alignItems:"center"}:{}}>
                     <div className='Item_desc'>
                         <span className='item_price'>
-                            <p className='item_selling_price'>{info.data.storeFrontOfferDiscount>0?info.data.storeFrontOfferDiscount.toFixed(2):info.data.sellingPrice} ₹/{info.data.uom} </p>
-                            <p className='item_original_price' style={info?.data?.mrp>0 && info?.data?.mrp>info?.data.sellingPrice?{}:{display:"none"}} >{info.data.mrp} ₹</p>
+                            <p className='item_selling_price'>{info?.data?.storeFrontOfferDiscount>0?(info?.data?.sellingPrice-info?.data?.storeFrontOfferDiscount)?.toLocaleString()?.split(".")?.length>1?(info?.data?.sellingPrice-info?.data?.storeFrontOfferDiscount)?.toFixed(1):(info?.data?.sellingPrice-info?.data?.storeFrontOfferDiscount):(info?.data?.sellingPrice).toLocaleString()?.split(".")?.length>1?info?.data?.sellingPrice.toFixed(1):info?.data?.sellingPrice} ₹/{info?.data?.uom} </p>
+                            <p className='item_original_price' style={info?.data?.mrp>0 && info?.data?.mrp>info?.data?.sellingPrice?{}:{display:"none"}} >{info?.data?.mrp} ₹</p>
                         </span>
                     </div>
                     {
