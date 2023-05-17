@@ -36,9 +36,9 @@ const CartOrder = ({
     let items = cartItem;
     let newData = [];
     items.map((item) => {
-      if (item.id === id && item.orderQnty !== 1) {
-        newData.push({ ...item, orderQnty: item.orderQnty - 1 });
-      } else if (item.id === id && item.orderQnty === 1) {
+      if (item.id === id && item.quantitySold !== 1) {
+        newData.push({ ...item, quantitySold: item.quantitySold - 1 });
+      } else if (item.id === id && item.quantitySold === 1) {
         let newList = [];
         newData.map((itm) => {
           if (item.id !== itm.id) {
@@ -57,7 +57,7 @@ const CartOrder = ({
     let newData = [];
     items.map((item) => {
       if (item.id == id) {
-        newData.push({ ...item, orderQnty: item.orderQnty + 1 });
+        newData.push({ ...item, quantitySold: item.quantitySold + 1 });
       } else {
         newData.push({ ...item });
       }
@@ -133,29 +133,26 @@ const CartOrder = ({
               {storeFrontOfferDiscount > 0
                 ? mrp > 0
                   ? (mrp >= Price).toLocaleString().split(".").length > 1
-                    ? `You Save ₹ ${(mrp >= Price).toFixed(1)}`
-                    : `You Save ₹ ${(mrp >= Price)}`
+                    ? `You Save ₹${(mrp >= Price).toFixed(1)}`
+                    : `You Save ₹${(mrp >= Price)}`
                     ? (mrp - (Price - storeFrontOfferDiscount))
                         .toLocaleString()
                         .split(".").length > 1
-                      ? `You Save ₹
-                        ${(mrp - (Price - storeFrontOfferDiscount)).toFixed(1)}`
-                      : `You Save ₹
-                        ${(mrp - (Price - storeFrontOfferDiscount))}`
+                      ? `You Save ₹${(mrp - (Price - storeFrontOfferDiscount)).toFixed(1)}`
+                      : `You Save ₹${(mrp - (Price - storeFrontOfferDiscount))}`
                     : (Price - storeFrontOfferDiscount)
                         .toLocaleString()
                         .slice(".").length > 1
-                    ? `You Save ₹
-                      ${(Price - storeFrontOfferDiscount).toFixed(1)}`
-                    : `You Save ₹ ${(Price - storeFrontOfferDiscount)}`
+                    ? `You Save ₹${(Price - storeFrontOfferDiscount).toFixed(1)}`
+                    : `You Save ₹${(Price - storeFrontOfferDiscount)}`
                   : (Price - storeFrontOfferDiscount)
                       .toLocaleString()
                       .slice(".").length > 1
-                  ? `You Save ₹ ${(Price - storeFrontOfferDiscount).toFixed(1)}`
-                  : `You Save ₹ ${(Price - storeFrontOfferDiscount)}`
+                  ? `You Save ₹${(Price - storeFrontOfferDiscount).toFixed(1)}`
+                  : `You Save ₹${(Price - storeFrontOfferDiscount)}`
                 : mrp != 0
                 ? mrp > Price
-                  ? `You Save ₹ ${mrp - Price}`
+                  ? `You Save ₹${mrp - Price}`
                   : ""
                 : ""}
             </p>

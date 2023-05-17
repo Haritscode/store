@@ -31,14 +31,14 @@ const Orders = ({ setShowRegister }) => {
     const [isCartEmpty,setIsCartEmpty]=useState(true);
     const [note,setNote]=useState("");
     let subtotal = 0;
-    cartData.map(({ orderQnty, sellingPrice,storeFrontOfferDiscount }) => subtotal += parseFloat(orderQnty * (storeFrontOfferDiscount>0?(sellingPrice-storeFrontOfferDiscount)?.toFixed(1):sellingPrice?.toFixed(1))));
+    cartData.map(({ quantitySold, sellingPrice,storeFrontOfferDiscount }) => subtotal += parseFloat(quantitySold * (storeFrontOfferDiscount>0?(sellingPrice-storeFrontOfferDiscount)?.toFixed(1):sellingPrice?.toFixed(1))));
     const { id } = useParams();
     const dispatch = useDispatch();
     dispatch(retailorId(id));
     const placeOrder = () => {
         let totalQuantity = 0;
-        cartData.map(({ orderQnty }) => {
-            totalQuantity += orderQnty;
+        cartData.map(({ quantitySold }) => {
+            totalQuantity += quantitySold;
         });
         if (isLoggedIn) {
             if ((userData.address?.length>0 && userData.zipcode?.length>0 && cartData.length !== 0 && deliveryOption === "Home Delivery") || (deliveryOption === "Store Pickup")){
@@ -78,21 +78,21 @@ const Orders = ({ setShowRegister }) => {
         if(cartData.length!==0)
         {
             setIsCartEmpty(false);
-            cartData.map(({mrp,sellingPrice,orderQnty,storeFrontOfferDiscount})=>{
+            cartData.map(({mrp,sellingPrice,quantitySold,storeFrontOfferDiscount})=>{
                 if(mrp!=0 && mrp>=sellingPrice && storeFrontOfferDiscount>0)
                 {
-                    saved+=(mrp-(sellingPrice-storeFrontOfferDiscount))*orderQnty;
+                    saved+=(mrp-(sellingPrice-storeFrontOfferDiscount))*quantitySold;
                 }
                 else if( mrp!==0 && mrp>=sellingPrice && storeFrontOfferDiscount==0)
                 {
-                    saved+=(mrp-sellingPrice)*orderQnty;
+                    saved+=(mrp-sellingPrice)*quantitySold;
                 }
                 else if(mrp==0 && storeFrontOfferDiscount>0)
                 {
-                    saved+=(sellingPrice-storeFrontOfferDiscount)*orderQnty;
+                    saved+=(sellingPrice-storeFrontOfferDiscount)*quantitySold;
                     console.log(saved);
                 }
-                console.log("mrp: ",mrp+ " " +" sellingPrice: "+ sellingPrice+" orderQnty: "+orderQnty+" storeFrontOfferDiscount: "+storeFrontOfferDiscount);
+                console.log("mrp: ",mrp+ " " +" sellingPrice: "+ sellingPrice+" quantitySold: "+quantitySold+" storeFrontOfferDiscount: "+storeFrontOfferDiscount);
             })
         }
         else{
@@ -130,33 +130,11 @@ const Orders = ({ setShowRegister }) => {
                     <div className='order_summery'>
                         <h4 className='order_head_text'>Order Summary</h4>
                         <ul className='orders_item_list'>
-                            {cartData.map(({ id, image, orderQnty, sellingPrice, name,mrp,storeFrontOfferDiscount }) => {
-                            return <li><CartOrder key={id} id={id} img={image} itemQnty={orderQnty} Price={sellingPrice} productName={name} mrp={mrp} storeFrontOfferDiscount={storeFrontOfferDiscount} /></li>})}
+                            {cartData.map(({ id, image, quantitySold, sellingPrice, name,mrp,storeFrontOfferDiscount }) => {
+                            return <li><CartOrder key={id} id={id} img={image} itemQnty={quantitySold} Price={sellingPrice} productName={name} mrp={mrp} storeFrontOfferDiscount={storeFrontOfferDiscount} /></li>})}
                         </ul>
                     </div>
                     <div className='total_calculate'>
-                        <div className='delivery_options'>
-                            <FormControl>
-                                <FormLabel id="demo-row-radio-buttons-group-label">Delivery Option</FormLabel>
-                                <RadioGroup
-                                    row
-                                    aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="controlled-radio-buttons-group"
-                                    value={deliveryOption}
-                                    onChange={handleChange}
-                                >
-                                <FormControlLabel value="Home Delivery" control={<Radio />} label="Home Delivery" />
-                                <FormControlLabel value="Store Pickup" control={<Radio />} label="Store Pickup" />
-                                </RadioGroup>
-                                <TextField
-                                    id="outlined-multiline-static"
-                                    label="Note for Retailer"
-                                    multiline
-                                    rows={4}
-                                    onChange={(e)=>setNote(e.target.value)}
-                                />
-                            </FormControl>
-                        </div>
                         <ol>
                             <li className='subtotal'>
                                 <span>Subtotal</span>
@@ -173,20 +151,43 @@ const Orders = ({ setShowRegister }) => {
                             </div>:""
                         }
                         <div className='order_total'>
-                            <div className='order_final_details'>
-                                <div className='total_cost_sec'>
-                                    {/* <h5>Total (Rupees):</h5> */}
-                                    <b className='total_amount'>Rs {deliveryOption==="Store Pickup"?subtotal:subtotal + (subtotal < retailorData?.storeFront?.minDeliveryAmount ? retailorData?. storeFront?.deliveryCharges : 0)}</b>
-                                </div>
-                                <div className='saved_cost_sec'>
-                                    <h5>Saved</h5>
-                                    <b className='saved_amount'>₹{savedAmount>0?savedAmount.toLocaleString().split('.').length>1?savedAmount.toFixed(1):savedAmount:0}</b>
-                                </div>
+                            <div className='delivery_options'>
+                                <FormControl>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Delivery Option</FormLabel>
+                                    <RadioGroup
+                                    row
+                                    aria-labelledby="demo-row-radio-buttons-group-label"
+                                    name="controlled-radio-buttons-group"
+                                    value={deliveryOption}
+                                    onChange={handleChange}
+                                    >
+                                    <FormControlLabel value="Home Delivery" control={<Radio />} label="Home Delivery" />
+                                    <FormControlLabel value="Store Pickup" control={<Radio />} label="Store Pickup" />
+                                    </RadioGroup>
+                                    <TextField
+                                        id="outlined-multiline-static"
+                                        label="Note for Retailer"
+                                        multiline
+                                        rows={2}
+                                        onChange={(e)=>setNote(e.target.value)}
+                                    />
+                                </FormControl>
                             </div>
-                            <div className='addNotAdded'>
-                            <p style={isAddressAvilable ? { display: "none" } : { color: "red", display: "flex", justifyContent: "center" }}>Address Not added</p>
+                            <div className='order_pricing'>
+                                <div className='order_final_details'>
+                                    <div className='total_cost_sec'>
+                                        <b className='total_amount'>Rs {deliveryOption==="Store Pickup"?subtotal:subtotal + (subtotal < retailorData?.storeFront?.minDeliveryAmount ? retailorData?. storeFront?.deliveryCharges : 0)}</b>
+                                    </div>
+                                    <div className='saved_cost_sec'>
+                                        <h5>Saved</h5>
+                                        <b className='saved_amount'>₹{savedAmount>0?savedAmount.toLocaleString().split('.').length>1?savedAmount.toFixed(1):savedAmount:0}</b>
+                                    </div>
+                                </div>
+                                <div className='addNotAdded'>
+                                    <p style={isAddressAvilable ? { display: "none" } : { color: "red", display: "flex", justifyContent: "center" }}>Address Not added</p>
+                                </div>
+                                <button disabled={deliveryOption===""?true:false} className='Confirm_Button' onClick={placeOrder}>Confirm Order</button>
                             </div>
-                            <button disabled={deliveryOption===""?true:false} className='Confirm_Button' onClick={placeOrder}>Confirm Order</button>
                         </div>
                     </div>
                 </div>

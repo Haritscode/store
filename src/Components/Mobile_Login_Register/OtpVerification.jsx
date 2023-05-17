@@ -3,9 +3,9 @@ import '../../scss/OtpVerification.scss'
 import {BiRefresh} from 'react-icons/bi'
 import InputOtp from './InputOtp'
 import handleSubmit from '../../handles/handleSubmit'
-import { onLoginVerification,onOTPVerify } from '../../handles/AuthUser'
+import {onOTPVerify } from '../../handles/AuthUser'
 import '../../scss/MobileLogin.scss'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 
 export default function OtpVerification({id,state}) {

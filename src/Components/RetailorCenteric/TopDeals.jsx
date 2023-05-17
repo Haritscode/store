@@ -7,9 +7,12 @@ const TopDeals = ({data,loading}) => {
     const [Date,setDate]=useState("")
     const [TodaysDate,setTodaysDate]=useState("");
     const [topDealsData,setTopDealsData]=useState([]);
-    useEffect(()=>async()=>{
+    const todayDate=async()=>{
         let Date=await axios.get('http://worldtimeapi.org/api/timezone/Asia/kolkata')
         setDate(Date?.data?.datetime);
+    }
+    useEffect(()=>{
+        todayDate();
     },[]);
     useEffect(()=>{
         if(Date!==""){

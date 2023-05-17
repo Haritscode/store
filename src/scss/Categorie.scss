@@ -22,6 +22,9 @@
             gap: 4px;
             list-style: none;
             justify-content: space-between;
+            .category_link{
+                text-decoration: none;
+            }
         }
     button{
         background: none;

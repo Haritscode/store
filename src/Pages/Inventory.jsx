@@ -10,7 +10,7 @@ import Loader from '../Components/Loading/Loader';
 const Inventory = () => {
     const {id,categoryName}=useParams();
     const dispatch=useDispatch();
-    dispatch(retailorId(id))    
+    dispatch(retailorId(id))  
     const [data=[],loading,error]=categoriesData(id,categoryName);
     useEffect(()=>{
         if(!loading)
@@ -30,7 +30,7 @@ const Inventory = () => {
             loading?<Loader/>:
             <div className='inventory'>
                 <div className='inventory_heading'>
-                    <h3>{categoryName}</h3>
+                    <h3>{categoryName==="all"?"All Products":categoryName}</h3>
                 </div>
                 <div className='inventory_data'>
                     {   data?.map((info,count)=><ItemCards key={count} data={info}/>)

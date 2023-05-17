@@ -39,7 +39,7 @@ const ItemCards = (info) => {
         cartItem?.map(item=>{
             if(item.id===info?.data?.id)
             {
-                dispatch({type:"itemFoundInCart",payload:item.orderQnty})
+                dispatch({type:"itemFoundInCart",payload:item.quantitySold})
             }
         })
     },[info])
@@ -65,10 +65,10 @@ const ItemCards = (info) => {
                 if(lst.id===info?.data?.id){
                     if(state.operation==="+")
                     {
-                        data?.push({...lst,orderQnty:( lst.orderQnty + 1 )})
+                        data?.push({...lst,quantitySold:( lst.quantitySold + 1 )})
                     }
                     else if(state.operation==="-"){
-                        data?.push({...lst,orderQnty:( lst.orderQnty - 1 )})
+                        data?.push({...lst,quantitySold:( lst.quantitySold - 1 )})
                     }
                     else{
                         data?.push({...lst})
@@ -87,11 +87,11 @@ const ItemCards = (info) => {
                 {
                     if(state.operation==="+")
                     {
-                        data?.push({...lst,orderQnty:( lst.orderQnty + 1 )})
+                        data?.push({...lst,quantitySold:( lst.quantitySold + 1 )})
                         itemAvilable=true;
                     }
                     else if(state.operation==="-"){
-                        data?.push({...lst,orderQnty:( lst.orderQnty - 1 )})                        
+                        data?.push({...lst,quantitySold:( lst.quantitySold - 1 )})                        
                         itemAvilable=true;
                     }
                     else{
@@ -108,7 +108,7 @@ const ItemCards = (info) => {
                 dispatcher(cartData(data))
             }
             else{
-                dispatcher(cartData([...list.cartData,{...info?.data,orderQnty:1}]))
+                dispatcher(cartData([...list.cartData,{...info?.data,quantitySold:1}]))
             }
         }
         else if(state.itemQuantity===0 && state.operation==="-"){
