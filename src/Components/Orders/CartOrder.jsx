@@ -130,31 +130,7 @@ const CartOrder = ({
               </span>
             </div>
             <p className="cartOrder_saved_amount">
-              {storeFrontOfferDiscount > 0
-                ? mrp > 0
-                  ? (mrp >= Price).toLocaleString().split(".").length > 1
-                    ? `You Save ₹${(mrp >= Price).toFixed(1)}`
-                    : `You Save ₹${(mrp >= Price)}`
-                    ? (mrp - (Price - storeFrontOfferDiscount))
-                        .toLocaleString()
-                        .split(".").length > 1
-                      ? `You Save ₹${(mrp - (Price - storeFrontOfferDiscount)).toFixed(1)}`
-                      : `You Save ₹${(mrp - (Price - storeFrontOfferDiscount))}`
-                    : (Price - storeFrontOfferDiscount)
-                        .toLocaleString()
-                        .slice(".").length > 1
-                    ? `You Save ₹${(Price - storeFrontOfferDiscount).toFixed(1)}`
-                    : `You Save ₹${(Price - storeFrontOfferDiscount)}`
-                  : (Price - storeFrontOfferDiscount)
-                      .toLocaleString()
-                      .slice(".").length > 1
-                  ? `You Save ₹${(Price - storeFrontOfferDiscount).toFixed(1)}`
-                  : `You Save ₹${(Price - storeFrontOfferDiscount)}`
-                : mrp != 0
-                ? mrp > Price
-                  ? `You Save ₹${mrp - Price}`
-                  : ""
-                : ""}
+              {storeFrontOfferDiscount > 0 ? mrp > 0 ? (mrp >= Price).toLocaleString().split(".").length > 1 ? `You Save ₹${(mrp >= Price).toFixed(1)}` : `You Save ₹${(mrp >= Price)}` ? (mrp - (Price - storeFrontOfferDiscount)).toLocaleString().split(".").length > 1 ? `You Save ₹${(mrp - (Price - storeFrontOfferDiscount)).toFixed(1)}` : `You Save ₹${(mrp - (Price - storeFrontOfferDiscount))}` : (Price - storeFrontOfferDiscount).toLocaleString().slice(".").length > 1 ? `You Save ₹${(Price - storeFrontOfferDiscount).toFixed(1)}` : `You Save ₹${(Price - storeFrontOfferDiscount)}`  : (Price - storeFrontOfferDiscount).toLocaleString().slice(".").length > 1 ? `You Save ₹${(Price - storeFrontOfferDiscount).toFixed(1)}` : `You Save ₹${(storeFrontOfferDiscount)}` : mrp != 0 ? mrp > Price ? `You Save ₹${mrp - Price}` : "" : ""}
             </p>
           </div>
           <span className="order_item_quantity">

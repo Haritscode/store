@@ -86,4 +86,12 @@ const searching=(data)=>{
         }
     }
 }
-export { retailorId,retailorData,cartData,orderCreated,deleveryAddress,userInfo,categoryList,isLoggedIn,userId,resendOtp,searching };
+const bestSellorData=(data)=>{
+    return {
+        type:"BESTSELLORDATA",
+        payload:{
+            bestSellor:data
+        }
+    }
+}
+export { retailorId,retailorData,cartData,orderCreated,deleveryAddress,userInfo,categoryList,isLoggedIn,userId,resendOtp,searching,bestSellorData };

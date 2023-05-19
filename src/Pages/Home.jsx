@@ -8,7 +8,6 @@ import Category from "../Components/Categories/CategoryTypes";
 import TopDeals from "../Components/RetailorCenteric/TopDeals";
 import categoriesList from "../handles/CategoriesList";
 import TopDeal from "../handles/TopDeals";
-import BestSellorData from "../handles/BestSellorsData";
 import Loader from "../Components/Loading/Loader";
 export default function Home() {
   const dispatch = useDispatch();
@@ -17,15 +16,14 @@ export default function Home() {
   const [TopDealsData = [], topDealsLoading, topDealsError] = TopDeal(id);
   const [categoryData = [], categoryLoading, categoryLoadingError] =
     categoriesList(id);
-  const [bestSellorData = [], bestSellorloading, bestSellorLoadingerror] =
-    BestSellorData(id);
+  const bestSellorData = useSelector(state=>state.rootReducer.userData.bestSellor);
   const [dataLoaded,setDataLoaded]=useState(false);
   useEffect(()=>{
-    if(!topDealsLoading && !categoryLoading && !bestSellorloading)
+    if(!topDealsLoading && !categoryLoading)
     {
       setDataLoaded(true);
     }
-  },[topDealsLoading,categoryLoading,bestSellorloading])
+  },[topDealsLoading,categoryLoading])
   return (
     <>
     {
@@ -42,7 +40,7 @@ export default function Home() {
           retailorId={id}
         />
         {
-          bestSellorData?.length>0?<BestSellor data={bestSellorData} id={id} loading={bestSellorloading} />:<></>
+          bestSellorData?.length>0?<BestSellor data={bestSellorData}/>:<></>
         }
       </div>:<Loader/>
     }

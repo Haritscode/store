@@ -87,12 +87,12 @@ const Orders = ({ setShowRegister }) => {
                 {
                     saved+=(mrp-sellingPrice)*quantitySold;
                 }
-                else if(mrp==0 && storeFrontOfferDiscount>0)
+                else if(mrp===0 && storeFrontOfferDiscount>0)
                 {
-                    saved+=(sellingPrice-storeFrontOfferDiscount)*quantitySold;
-                    console.log(saved);
+                    saved+=(storeFrontOfferDiscount)*quantitySold;
+                    ;
                 }
-                console.log("mrp: ",mrp+ " " +" sellingPrice: "+ sellingPrice+" quantitySold: "+quantitySold+" storeFrontOfferDiscount: "+storeFrontOfferDiscount);
+                console.log("mrp: ",mrp+ " " +" sellingPrice: "+ sellingPrice+" quantitySold: "+quantitySold+" storeFrontOfferDiscount: "+storeFrontOfferDiscount+" saved: "+saved);
             })
         }
         else{

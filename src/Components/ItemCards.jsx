@@ -37,7 +37,7 @@ const ItemCards = (info) => {
     const imageref=useRef(null);
     useEffect(()=>{
         cartItem?.map(item=>{
-            if(item.id===info?.data?.id)
+            if(item.id===info.data.id)
             {
                 dispatch({type:"itemFoundInCart",payload:item.quantitySold})
             }
@@ -125,7 +125,7 @@ const ItemCards = (info) => {
     const substituteImage=()=>{
         imageref.current.src=subtitutingImg;
     }
-    // console.log(info?.data?.storeFrontOfferDiscount>0?toString(info?.data?.sellingPrice-info?.data?.storeFrontOfferDiscount)?.split(".")?.length>1?(info?.data?.sellingPrice-info?.data?.storeFrontOfferDiscount)?.toFixed(1):(info?.data?.sellingPrice-info?.data?.storeFrontOfferDiscount).toFixed(1):toString(info?.data?.sellingPrice).split(".")?.length>1?info?.data?.sellingPrice.toFixed(1):info?.data?.sellingPrice);
+    console.log(info.data);
     return (
         <>
         <div className='Item'>

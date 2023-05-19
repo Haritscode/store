@@ -11,7 +11,8 @@ import { RiAccountCircleFill } from 'react-icons/ri'
 import { Link, NavLink } from 'react-router-dom'
 import LoginSignUpBtn from '../Buttons/LoginSignUpBtn'
 import customerDetails from '../../handles/customerDetails'
-import { userInfo,categoryList } from '../../actions'
+import { userInfo,categoryList,bestSellorData as bestSellorDataList } from '../../actions';
+import BestSellorData from "../../handles/BestSellorsData";
 import SearchBar from './SearchBar'
 import retailorInfo from '../../handles/RetailorData'
 import StoreLogo from './StoreLogo'
@@ -26,11 +27,26 @@ export default function Navbar({setShowRegister,showRegister,setSearch,search,se
     const [inventoryData, setInventoryData] = useState([]);
     const LoggedInUser=useSelector(state=>state.rootReducer.userData.isUserLoggedIn)
     const [data=[],loading,error]=dataScrape(id);
+    const [bestSellorData = [], bestSellorloading, bestSellorLoadingerror] = BestSellorData(id);
     useEffect(() => {
         if (id !== "") {
             retailorInfo(id,dispatch);
         }
     }, [id]);
+    useEffect(()=>{
+        let bestSellorList=[];
+        if(data.length>0){
+            data.map((item)=>{
+                bestSellorData.map((lst)=>{
+                    if(item.id===lst.id)
+                    {
+                        bestSellorList.push(item);
+                    }
+                })
+            })
+        }
+        dispatch(bestSellorDataList(bestSellorList))
+    },[data])
     useEffect(()=>{
         if(id.length>0)
         {

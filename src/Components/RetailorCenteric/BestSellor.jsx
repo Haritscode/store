@@ -3,7 +3,7 @@ import ItemCards from '../ItemCards'
 import "../../scss/BestSellor.scss"
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-export default function BestSellor({data,loading,id}) {
+export default function BestSellor({data}) {
   const [NoOfItemToShow,setNoOfItemToShow]=useState(6)
   return (
     <>

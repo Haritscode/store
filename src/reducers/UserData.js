@@ -9,7 +9,8 @@ const initialState={
     userInfo:[],
     userId:"",
     resendOtp:false,
-    searching:""
+    searching:"",
+    bestSellor:[]
 }
 const userData=(state=initialState,action)=>{
     switch(action.type)
@@ -36,6 +37,8 @@ const userData=(state=initialState,action)=>{
             return {...state,resendOtp:action.payload.resendOtp}
         case "SEARCHING":
             return {...state,searching:action.payload.searching}
+        case "BESTSELLORDATA":
+            return {...state,bestSellor:action.payload.bestSellor}
         default:
             return state;
     }
